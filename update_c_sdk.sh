@@ -7,14 +7,13 @@ function do_loudly() {
 
 set -e
 
-
-mkdir -pv tinsys_c_sdk
-OUTDIR=$(realpath tinsys_c_sdk)
+mkdir -pv tinysys_c_sdk
+OUTDIR=$(realpath tinysys_c_sdk)
 
 REPO=target/tinysys_repo
 if [ ! -d "$REPO" ]; then
     do_loudly git clone https://github.com/ecilasun/tinysys.git \
-        --no-checkout $REPO                           \
+        --no-checkout $REPO                                     \
         --depth       1
     pushd $REPO > /dev/null
 
@@ -37,3 +36,5 @@ popd > /dev/null
 file $REPO/software/SDK
 file $OUTDIR
 do_loudly cp -rv $REPO/software/SDK $OUTDIR/
+
+ls $OUTDIR/SDK/*.h
