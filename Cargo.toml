@@ -5,6 +5,10 @@ edition = "2024"
 
 [features]
 default = []
+# default = ["bindgen"]
 std = []
 
 [dependencies]
+
+[build-dependencies]
+bindgen = { version = "0.71", optional = true }

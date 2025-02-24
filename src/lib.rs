@@ -1,3 +1,4 @@
-#![cfg_attr(not(any(test, feature="std")), no_std)]
+#![cfg_attr(not(any(test, feature = "std")), no_std)]
 
-pub struct Api;
+mod sdk;
+pub use sdk::*;
