@@ -1,10 +1,24 @@
+#![allow(clippy::print_literal)]
+
 fn main() {
+    // TODO: We should skip bindgen for rust-analyzer, clippy, and cargo-doc
     #[cfg(feature = "bindgen")]
     do_bindgen();
 }
 
 #[cfg(feature = "bindgen")]
 fn do_bindgen() {
+    for file in [
+        "src/include/sdk.h",
+        "src/include/wrapper.h",
+        "tinysys_sys/tinysys_c_sdk/git-HEAD.txt",
+    ] {
+        println!("cargo:rerun-if-changed={}", file);
+    }
+
+    // TODO: We use this to set the sysroot when cross compiling, but could probably do that logic here
+    println!("cargo:rerun-if-env-changed={}", "BINDGEN_EXTRA_CLANG_ARGS");
+
     let bindings = bindgen::Builder::default()
         .header("src/include/wrapper.h")
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
@@ -14,6 +28,7 @@ fn do_bindgen() {
         // items needed by a function definition. This eliminates >80% of
         // the symbols typically found.
         .allowlist_function(".*")
+        .merge_extern_blocks(true)
         .generate()
         .expect("Unable to generate bindings");
 

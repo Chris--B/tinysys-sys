@@ -34,5 +34,6 @@ echo "+ Done"
 #     --std=c++17
 
 # Our build script generates the rs files
+export BINDGEN_EXTRA_CLANG_ARGS="--sysroot=$(riscv64-unknown-elf-gcc -print-sysroot)"
 do_loudly cargo build --features=bindgen $*
 do_loudly cargo fmt
