@@ -1,2 +1,4 @@
+# https://github.com/github-linguist/linguist/blob/main/docs/overrides.md
 src/include/sdk.h linguist-generated=true
 src/sdk.rs        linguist-generated=true
+tinysys_c_sdk/**  linguist-vendored=true
