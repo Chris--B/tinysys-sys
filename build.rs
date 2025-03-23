@@ -30,6 +30,9 @@ fn do_bindgen() {
         // items needed by a function definition. This eliminates >80% of
         // the symbols typically found.
         .allowlist_function(".*")
+        // _ names are usually special and not part of the SDK we want
+        .opaque_type("_.*")
+        .blocklist_function("_.*")
         .blocklist_function(blocklist_c_funcs_regex)
         .merge_extern_blocks(true)
         .generate()
