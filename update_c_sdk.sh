@@ -24,7 +24,7 @@ if [ ! -d "$REPO" ]; then
 else
     echo "Found $REPO, attempting to update"
     pushd $REPO > /dev/null
-    do_loudly git fetch
+    do_loudly git pull
 fi
 
 echo $(git rev-parse HEAD)      > $OUTDIR/git-HEAD.txt
