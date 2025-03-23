@@ -17,6 +17,7 @@
 #include <sdcard.h>
 #include <serialinringbuffer.h>
 #include <task.h>
+#include <tbm_printf.h>
 #include <uart.h>
 #include <usbcommon.h>
 #include <vpu.h>
