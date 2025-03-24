@@ -45,3 +45,4 @@ echo "+ riscv64-unknown-elf-ar ..."
 riscv64-unknown-elf-ar      -rc $SDK_PATH/libtinysys_sdk.a *.o
 
 riscv64-unknown-elf-objdump -tC $SDK_PATH/libtinysys_sdk.a > $SDK_PATH/objdump.txt
+riscv64-unknown-elf-objdump -t  $SDK_PATH/libtinysys_sdk.a > $SDK_PATH/objdump-demangle.txt
