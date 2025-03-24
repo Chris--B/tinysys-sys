@@ -6,10 +6,11 @@ rust-version = "1.85"
 
 [features]
 default = []
-# default = ["bindgen"]
+bindgen = ["dep:walkdir", "dep:bindgen"]
 std = []
 
 [dependencies]
 
 [build-dependencies]
 bindgen = { version = "0.71", optional = true }
+walkdir = { version = "2", optional = true }

@@ -1589,6 +1589,9 @@ pub const FP_SUBNORMAL: u32 = 3;
 pub const FP_NORMAL: u32 = 4;
 pub const MATH_ERRNO: u32 = 1;
 pub const MATH_ERREXCEPT: u32 = 2;
+pub const EXIT_FAILURE: u32 = 1;
+pub const EXIT_SUCCESS: u32 = 0;
+pub const RAND_MAX: u32 = 2147483647;
 pub const BUFSIZ: u32 = 1024;
 pub const FOPEN_MAX: u32 = 20;
 pub const FILENAME_MAX: u32 = 1024;
@@ -1817,6 +1820,46 @@ const _: () = {
     ["Size of _reent"][::core::mem::size_of::<_reent>() - 288usize];
     ["Alignment of _reent"][::core::mem::align_of::<_reent>() - 8usize];
 };
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct div_t {
+    pub quot: ::core::ffi::c_int,
+    pub rem: ::core::ffi::c_int,
+}
+#[allow(clippy::unnecessary_operation, clippy::identity_op)]
+const _: () = {
+    ["Size of div_t"][::core::mem::size_of::<div_t>() - 8usize];
+    ["Alignment of div_t"][::core::mem::align_of::<div_t>() - 4usize];
+    ["Offset of field: div_t::quot"][::core::mem::offset_of!(div_t, quot) - 0usize];
+    ["Offset of field: div_t::rem"][::core::mem::offset_of!(div_t, rem) - 4usize];
+};
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct ldiv_t {
+    pub quot: ::core::ffi::c_long,
+    pub rem: ::core::ffi::c_long,
+}
+#[allow(clippy::unnecessary_operation, clippy::identity_op)]
+const _: () = {
+    ["Size of ldiv_t"][::core::mem::size_of::<ldiv_t>() - 8usize];
+    ["Alignment of ldiv_t"][::core::mem::align_of::<ldiv_t>() - 4usize];
+    ["Offset of field: ldiv_t::quot"][::core::mem::offset_of!(ldiv_t, quot) - 0usize];
+    ["Offset of field: ldiv_t::rem"][::core::mem::offset_of!(ldiv_t, rem) - 4usize];
+};
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct lldiv_t {
+    pub quot: ::core::ffi::c_longlong,
+    pub rem: ::core::ffi::c_longlong,
+}
+#[allow(clippy::unnecessary_operation, clippy::identity_op)]
+const _: () = {
+    ["Size of lldiv_t"][::core::mem::size_of::<lldiv_t>() - 16usize];
+    ["Alignment of lldiv_t"][::core::mem::align_of::<lldiv_t>() - 8usize];
+    ["Offset of field: lldiv_t::quot"][::core::mem::offset_of!(lldiv_t, quot) - 0usize];
+    ["Offset of field: lldiv_t::rem"][::core::mem::offset_of!(lldiv_t, rem) - 8usize];
+};
+pub type __compar_fn_t = u32;
 pub type FILE = __FILE;
 pub type fpos_t = _fpos_t;
 pub const EVideoMode_EVM_320_Wide: EVideoMode = 0;
@@ -2202,6 +2245,80 @@ unsafe extern "C" {
     pub fn erfcf(arg1: f32) -> f32;
     pub fn log2f(arg1: f32) -> f32;
     pub fn hypotf(arg1: f32, arg2: f32) -> f32;
+    #[link_name = "\u{1}_ZNSt3__122__libcpp_verbose_abortEPKcz"]
+    pub fn std___libcpp_verbose_abort(__format: *const ::core::ffi::c_char, ...);
+    pub fn abort() -> !;
+    pub fn abs(arg1: ::core::ffi::c_int) -> ::core::ffi::c_int;
+    pub fn atexit(__func: ::core::option::Option<unsafe extern "C" fn()>) -> ::core::ffi::c_int;
+    pub fn atof(__nptr: *const ::core::ffi::c_char) -> f64;
+    pub fn atoi(__nptr: *const ::core::ffi::c_char) -> ::core::ffi::c_int;
+    pub fn atol(__nptr: *const ::core::ffi::c_char) -> ::core::ffi::c_long;
+    pub fn bsearch(
+        __key: *const ::core::ffi::c_void,
+        __base: *const ::core::ffi::c_void,
+        __nmemb: usize,
+        __size: usize,
+        _compar: __compar_fn_t,
+    ) -> *mut ::core::ffi::c_void;
+    pub fn calloc(arg1: usize, arg2: usize) -> *mut ::core::ffi::c_void;
+    pub fn div(__numer: ::core::ffi::c_int, __denom: ::core::ffi::c_int) -> div_t;
+    pub fn exit(__status: ::core::ffi::c_int) -> !;
+    pub fn free(arg1: *mut ::core::ffi::c_void);
+    pub fn getenv(__string: *const ::core::ffi::c_char) -> *mut ::core::ffi::c_char;
+    pub fn labs(arg1: ::core::ffi::c_long) -> ::core::ffi::c_long;
+    pub fn ldiv(__numer: ::core::ffi::c_long, __denom: ::core::ffi::c_long) -> ldiv_t;
+    pub fn malloc(arg1: usize) -> *mut ::core::ffi::c_void;
+    pub fn mblen(arg1: *const ::core::ffi::c_char, arg2: usize) -> ::core::ffi::c_int;
+    pub fn mbtowc(
+        arg1: *mut u32,
+        arg2: *const ::core::ffi::c_char,
+        arg3: usize,
+    ) -> ::core::ffi::c_int;
+    pub fn wctomb(arg1: *mut ::core::ffi::c_char, arg2: u32) -> ::core::ffi::c_int;
+    pub fn mbstowcs(arg1: *mut u32, arg2: *const ::core::ffi::c_char, arg3: usize) -> usize;
+    pub fn wcstombs(arg1: *mut ::core::ffi::c_char, arg2: *const u32, arg3: usize) -> usize;
+    pub fn qsort(
+        __base: *mut ::core::ffi::c_void,
+        __nmemb: usize,
+        __size: usize,
+        _compar: __compar_fn_t,
+    );
+    pub fn rand() -> ::core::ffi::c_int;
+    pub fn realloc(arg1: *mut ::core::ffi::c_void, arg2: usize) -> *mut ::core::ffi::c_void;
+    pub fn srand(__seed: ::core::ffi::c_uint);
+    pub fn strtod(__n: *const ::core::ffi::c_char, __end_PTR: *mut *mut ::core::ffi::c_char)
+    -> f64;
+    pub fn strtof(__n: *const ::core::ffi::c_char, __end_PTR: *mut *mut ::core::ffi::c_char)
+    -> f32;
+    pub fn strtol(
+        __n: *const ::core::ffi::c_char,
+        __end_PTR: *mut *mut ::core::ffi::c_char,
+        __base: ::core::ffi::c_int,
+    ) -> ::core::ffi::c_long;
+    pub fn strtoul(
+        __n: *const ::core::ffi::c_char,
+        __end_PTR: *mut *mut ::core::ffi::c_char,
+        __base: ::core::ffi::c_int,
+    ) -> ::core::ffi::c_ulong;
+    pub fn system(__string: *const ::core::ffi::c_char) -> ::core::ffi::c_int;
+    pub fn atoll(__nptr: *const ::core::ffi::c_char) -> ::core::ffi::c_longlong;
+    pub fn llabs(arg1: ::core::ffi::c_longlong) -> ::core::ffi::c_longlong;
+    pub fn lldiv(__numer: ::core::ffi::c_longlong, __denom: ::core::ffi::c_longlong) -> lldiv_t;
+    pub fn strtoll(
+        __n: *const ::core::ffi::c_char,
+        __end_PTR: *mut *mut ::core::ffi::c_char,
+        __base: ::core::ffi::c_int,
+    ) -> ::core::ffi::c_longlong;
+    pub fn strtoull(
+        __n: *const ::core::ffi::c_char,
+        __end_PTR: *mut *mut ::core::ffi::c_char,
+        __base: ::core::ffi::c_int,
+    ) -> ::core::ffi::c_ulonglong;
+    pub fn aligned_alloc(arg1: usize, arg2: usize) -> *mut ::core::ffi::c_void;
+    pub fn at_quick_exit(
+        arg1: ::core::option::Option<unsafe extern "C" fn()>,
+    ) -> ::core::ffi::c_int;
+    pub fn quick_exit(arg1: ::core::ffi::c_int);
     pub fn tmpfile() -> *mut FILE;
     pub fn tmpnam(arg1: *mut ::core::ffi::c_char) -> *mut ::core::ffi::c_char;
     pub fn fclose(arg1: *mut FILE) -> ::core::ffi::c_int;
