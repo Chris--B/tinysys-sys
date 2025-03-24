@@ -1,12 +1,35 @@
 #![allow(clippy::print_literal)]
 
+use std::env;
+use std::fs;
+
 fn main() {
     // TODO: We should skip bindgen for rust-analyzer, clippy, and cargo-doc
     #[cfg(feature = "bindgen")]
     do_bindgen();
 
-    println!("cargo::rustc-link-search=STATIC={}", ".");
-    println!("cargo::rustc-link-lib={}", "tinysys_sdk");
+    use_native_lib("tinysys_c_sdk", "tinysys_sdk");
+}
+
+fn use_native_lib(lib_path: &str, lib_name: &str) {
+    let out_path = env::var("OUT_DIR").unwrap();
+
+    let lib_filename = format!("lib{lib_name}.a");
+
+    // Copy the library into the output folder and instruct cargo to link against it
+    fs::copy(
+        format!("{}/{}", lib_path, lib_filename),
+        format!("{}/{}", out_path, lib_filename),
+    )
+    .unwrap_or_else(|err| {
+        panic!(
+            "Failed to copy native lib (\"{}\") to output directory: {}",
+            lib_filename, err
+        )
+    });
+
+    println!("cargo:rustc-link-lib={lib_name}");
+    println!("cargo:rustc-link-search=native={}", out_path);
 }
 
 #[cfg(feature = "bindgen")]
