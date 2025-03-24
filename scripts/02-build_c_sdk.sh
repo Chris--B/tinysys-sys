@@ -33,8 +33,10 @@ clang++   \
     $SDK_PATH/SDK/*.c               \
     -g -O0 -Wall                    \
     -std=c++20                      \
-    --target=riscv32 \
-    -D_LIBCPP_HAS_NO_THREADS \
+    --target=riscv32                \
+    -D_LIBCPP_HAS_NO_THREADS        \
+    -march=rv32im_zicsr_zifencei_zfinx \
+    -mabi=ilp32                     \
     --sysroot=$(riscv64-unknown-elf-gcc -print-sysroot) \
     -c
 
