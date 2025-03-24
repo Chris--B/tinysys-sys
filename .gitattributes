@@ -1,4 +1,8 @@
-# https://github.com/github-linguist/linguist/blob/main/docs/overrides.md
+# Configure linguist for Github repo stats
+# See: https://github.com/github-linguist/linguist/blob/main/docs/overrides.md
 src/include/sdk.h linguist-generated=true
 src/sdk.rs        linguist-generated=true
 tinysys_c_sdk/**  linguist-vendored=true
+
+# If you set a diff for "a" files, git will use it to diff archives
+*.a binary diff=a

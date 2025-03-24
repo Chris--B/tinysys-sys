@@ -30,7 +30,13 @@ fn do_bindgen() {
         .use_core()
         .clang_args(["-I", "tinysys_c_sdk/SDK"])
         .clang_args(["-x", "c++"])
-        .clang_args(["-std=c++20"])
+        // NOTE: Keep these in sync with the flags in ./scripts/build_c_sdk.sh
+        .clang_args([
+            "-std=c++20",
+            "-mcmodel=medany",
+            "-march=rv32im_zicsr_zifencei_zfinx",
+            "-mabi=ilp32",
+        ])
         // This accepts all functions, but now bindgen will only consider
         // items needed by a function definition. This eliminates >80% of
         // the symbols typically found.

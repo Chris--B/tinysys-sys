@@ -22,7 +22,7 @@ if [ ! -d "$REPO" ]; then
     do_loudly git sparse-checkout set software/SDK/
     do_loudly git checkout
 else
-    echo "Found $REPO, attempting to update"
+    echo "[~] Found $REPO, attempting to update"
     pushd $REPO > /dev/null
     do_loudly git pull
 fi
@@ -33,8 +33,12 @@ echo $(git log --oneline HEAD) >> $OUTDIR/git-HEAD.txt
 
 popd > /dev/null
 
-file $REPO/software/SDK
-file $OUTDIR
-do_loudly cp -rv $REPO/software/SDK $OUTDIR/
+SDK_PATH=$REPO/software/
+do_loudly cp -r $SDK_PATH/SDK $OUTDIR/
 
-ls $OUTDIR/SDK/*.h
+echo "[~] SDK H files"
+for file in $(find $SDK_PATH/SDK -type f -name "*.h" | sort); do
+    if [[ -f "$file" ]]; then
+        echo "    + ${file#$SDK_PATH/}"
+    fi
+done
