@@ -28,17 +28,14 @@ done
 
 echo "+ riscv64-unknown-elf-g++ ..."
 # NOTE: Keep these in sync with the flags in build.rs
-riscv64-unknown-elf-g++   \
+clang++   \
     -I $SDK_PATH/SDK                \
     $SDK_PATH/SDK/*.c               \
     -g -O0 -Wall                    \
-    -mcmodel=medany -std=c++20      \
-    --param "min-pagesize=0"        \
-    --param "l1-cache-line-size=64" \
-    --param "l1-cache-size=16"      \
-    -march=rv32im_zicsr_zifencei_zfinx \
-    -mabi=ilp32                     \
-    -Wl,-gc-sections                \
+    -std=c++20                      \
+    --target=riscv32 \
+    -D_LIBCPP_HAS_NO_THREADS \
+    --sysroot=$(riscv64-unknown-elf-gcc -print-sysroot) \
     -c
 
 echo "+ riscv64-unknown-elf-ar ..."

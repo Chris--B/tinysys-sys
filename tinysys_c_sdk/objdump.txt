@@ -4,26 +4,14 @@ apu.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 apu.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l    d  .sdata	00000000 .sdata
-00000000 l    d  .debug_info	00000000 .debug_info
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
-00000000 g     O .sdata	00000004 IO_AUDIOOUT
-00000000 g     F .text	00000050 APUAllocateBuffer(unsigned long)
+00000000 g     F .text	00000034 APUAllocateBuffer(unsigned int)
 00000000         *UND*	00000000 malloc
-00000050 g     F .text	00000050 APUSetBufferSize(unsigned long)
-000000a0 g     F .text	00000050 APUStartDMA(unsigned long)
-000000f0 g     F .text	00000050 APUSetSampleRate(EAPUSampleRate)
+00000034 g     F .text	0000002c APUSetBufferSize(unsigned int)
+00000000 g     O .sdata	00000004 IO_AUDIOOUT
+00000060 g     F .text	0000002a APUStartDMA(unsigned int)
+0000008a g     F .text	0000002a APUSetSampleRate(EAPUSampleRate)
 
 
 
@@ -31,36 +19,25 @@ basesystem.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 basesystem.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l    d  .debug_info	00000000 .debug_info
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
-00000000 g     F .text	0000007c E32ReadTime()
-0000007c g     F .text	0000007c E32ReadCycles()
-000000f8 g     F .text	000000b8 E32Sleep(unsigned long long)
-000001b0 g     F .text	00000070 E32ReadRetiredInstructions()
-00000220 g     F .text	0000005c ClockToMs(unsigned long long)
+00000000 g     F .text	00000044 E32ReadTime()
+00000044 g     F .text	00000044 E32ReadCycles()
+00000088 g     F .text	00000084 E32Sleep(unsigned long long)
+0000010c g     F .text	00000038 E32ReadRetiredInstructions()
+00000144 g     F .text	00000030 ClockToMs(unsigned long long)
 00000000         *UND*	00000000 __udivdi3
-0000027c g     F .text	00000058 ClockToUs(unsigned long long)
-000002d4 g     F .text	000000ec ClockMsToHMS(unsigned long, unsigned long*, unsigned long*, unsigned long*)
-000003c0 g     F .text	0000004c E32SetTimeCompare(unsigned long long)
-0000040c g     F .text	0000007c E32WriteMemMappedCSR(unsigned long, unsigned long, unsigned long)
-00000488 g     F .text	00000074 E32ReadMemMappedCSR(unsigned long, unsigned long)
-000004fc g     F .text	00000054 E32SetupCPU(unsigned long, void*)
-00000550 g     F .text	00000050 E32ResetCPU(unsigned long)
-000005a0 g     F .text	00000050 E32ClearReset(unsigned long)
-000005f0 g     F .text	00000030 E32BeginCriticalSection()
-00000620 g     F .text	00000030 E32EndCriticalSection()
-00000650 g     F .text	00000028 E32GetScratchpad()
+00000174 g     F .text	00000050 ClockToUs(unsigned long long)
+000001c4 g     F .text	000000b4 ClockMsToHMS(unsigned int, unsigned int*, unsigned int*, unsigned int*)
+00000278 g     F .text	00000042 E32SetTimeCompare(unsigned long long)
+000002ba g     F .text	0000005a E32WriteMemMappedCSR(unsigned int, unsigned int, unsigned int)
+00000314 g     F .text	00000060 E32ReadMemMappedCSR(unsigned int, unsigned int)
+00000374 g     F .text	0000003c E32SetupCPU(unsigned int, void*)
+000003b0 g     F .text	00000036 E32ResetCPU(unsigned int)
+000003e6 g     F .text	00000036 E32ClearReset(unsigned int)
+0000041c g     F .text	00000024 E32BeginCriticalSection()
+00000440 g     F .text	00000024 E32EndCriticalSection()
+00000464 g     F .text	00000014 E32GetScratchpad()
 
 
 
@@ -68,23 +45,12 @@ core.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 core.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l    d  .debug_info	00000000 .debug_info
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
-00000000 g     F .text	00000064 getcwd
-00000064 g     F .text	00000050 chdir
-000000b4 g     F .text	00000050 _brk
-00000104 g     F .text	00000074 _sbrk
+00000000 g     F .text	00000052 getcwd
+00000052 g     F .text	00000042 chdir
+00000094 g     F .text	00000042 _brk
+000000d6 g     F .text	0000005a _sbrk
 
 
 
@@ -92,27 +58,17 @@ joystick.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 joystick.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l    d  .rodata	00000000 .rodata
-00000000 l    d  .debug_info	00000000 .debug_info
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
-00000000 g     F .text	00000084 ReadButtonState(unsigned char*)
-00000000         *UND*	00000000 SerialInRingBufferRead(void*, unsigned long)
-00000084 g     F .text	00000084 ReadAxisState(unsigned char*)
-00000108 g     F .text	00000080 ProcessButtonState(unsigned char*)
-00000188 g     F .text	00000190 ProcessAxisState(unsigned char*)
-00000318 g     F .text	00000044 UpdateJoystickState()
-0000035c g     F .text	0000002c JoystickGetState()
+00000000 g     F .text	0000005a ReadButtonState(unsigned char*)
+00000000         *UND*	00000000 SerialInRingBufferRead(void*, unsigned int)
+0000005a g     F .text	0000005a ReadAxisState(unsigned char*)
+000000b4 g     F .text	00000038 ProcessButtonState(unsigned char*)
+000000ec g     F .text	00000132 ProcessAxisState(unsigned char*)
+00000000         *UND*	00000000 __floatsisf
+00000000         *UND*	00000000 __divsf3
+0000021e g     F .text	0000002a UpdateJoystickState()
+00000248 g     F .text	00000018 JoystickGetState()
 
 
 
@@ -120,30 +76,19 @@ keyboard.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 keyboard.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l     O .bss	00000004 s_control
-00000004 l     O .bss	00000004 s_alt
-00000000 l    d  .debug_info	00000000 .debug_info
+00000000 l     O .sbss	00000004 s_control
+00000004 l     O .sbss	00000004 s_alt
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
-00000000 g     O .data	00000100 scantoasciitable_lowercase
+00000000 g     F .text	00000204 ProcessKeyState(unsigned char*)
+00000000         *UND*	00000000 KeyRingBufferWrite(void const*, unsigned int)
+00000204 g     F .text	00000054 KeyboardScanCodeToASCII(unsigned char, unsigned char)
 00000100 g     O .data	00000100 scantoasciitable_uppercase
-00000000 g     F .text	00000278 ProcessKeyState(unsigned char*)
-00000000         *UND*	00000000 KeyRingBufferWrite(void const*, unsigned long)
-00000424 g     F .text	00000078 KeyboardScanCodeToASCII(unsigned char, unsigned char)
-00000278 g     F .text	00000100 UpdateKeyboardState(unsigned char*)
-00000378 g     F .text	00000028 KeyboardGetState()
-000003a0 g     F .text	00000084 ReadKeyState(unsigned char*)
-00000000         *UND*	00000000 SerialInRingBufferRead(void*, unsigned long)
+00000000 g     O .data	00000100 scantoasciitable_lowercase
+00000258 g     F .text	000000a0 UpdateKeyboardState(unsigned char*)
+000002f8 g     F .text	00000014 KeyboardGetState()
+0000030c g     F .text	0000005a ReadKeyState(unsigned char*)
+00000000         *UND*	00000000 SerialInRingBufferRead(void*, unsigned int)
 
 
 
@@ -151,31 +96,14 @@ keyringbuffer.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 keyringbuffer.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l    d  .srodata	00000000 .srodata
-00000000 l     O .srodata	00000004 cbBufferSizeLog2
-00000004 l     O .srodata	00000001 c_cbBufferSizeLog2
-00000008 l     O .srodata	00000004 c_cbBufferSize
-0000000c l     O .srodata	00000004 c_sizeMask
-00000000 l    d  .sdata	00000000 .sdata
-00000000 l    d  .debug_info	00000000 .debug_info
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
+00000000 g     F .text	00000026 KeyRingBufferReset()
 00000000 g     O .sdata	00000004 m_readOffset
 00000004 g     O .sdata	00000004 m_writeOffset
-00000000 g     F .text	00000044 KeyRingBufferReset()
-00000044 g     F .text	00000120 KeyRingBufferRead(void*, unsigned long)
+00000026 g     F .text	00000106 KeyRingBufferRead(void*, unsigned int)
 00000000         *UND*	00000000 memcpy
-00000164 g     F .text	00000124 KeyRingBufferWrite(void const*, unsigned long)
+0000012c g     F .text	0000010a KeyRingBufferWrite(void const*, unsigned int)
 
 
 
@@ -183,23 +111,11 @@ leds.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 leds.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l    d  .sdata	00000000 .sdata
-00000000 l    d  .debug_info	00000000 .debug_info
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
+00000000 g     F .text	0000001a LEDGetState()
 00000000 g     O .sdata	00000004 LEDSTATE
-00000000 g     F .text	00000034 LEDGetState()
-00000034 g     F .text	0000003c LEDSetState(unsigned long)
+0000001a g     F .text	00000022 LEDSetState(unsigned int)
 
 
 
@@ -207,27 +123,14 @@ mini-printf.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 mini-printf.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l     F .text	00000054 mini_strlen(char const*)
-00000054 l     F .text	00000200 mini_itoa(int, unsigned int, unsigned int, unsigned int, char*, unsigned int)
-00000254 l     F .text	0000008c _putc(int, mini_buff*)
-000002e0 l     F .text	000000dc _puts(char*, unsigned int, mini_buff*)
-00000000 l    d  .rodata	00000000 .rodata
-00000000 l    d  .debug_info	00000000 .debug_info
+00000286 l     F .text	00000060 _putc(int, mini_buff*)
+000002e6 l     F .text	000001ea mini_itoa(int, unsigned int, unsigned int, unsigned int, char*, unsigned int)
+000004d0 l     F .text	000000a2 _puts(char*, unsigned int, mini_buff*)
+00000572 l     F .text	0000003e mini_strlen(char const*)
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_rnglists	00000000 .debug_rnglists
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
-000003bc g     F .text	000002f4 mini_vsnprintf
-000006b0 g     F .text	0000007c mini_snprintf
+00000000 g     F .text	00000286 mini_vsnprintf
+000005b0 g     F .text	00000052 mini_snprintf
 
 
 
@@ -235,31 +138,17 @@ mini-scanf.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 mini-scanf.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l    d  .rodata	00000000 .rodata
-00000000 l    d  .sbss	00000000 .sbss
-00000000 l    d  .debug_info	00000000 .debug_info
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_rnglists	00000000 .debug_rnglists
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
-00000000 g     F .text	0000005c c_isspace(int)
-0000005c g     F .text	0000004c c_isdigit(int)
-000000a8 g     F .text	00000064 c_ishex(int)
-0000010c g     F .text	00000074 hext2int(int)
-00000180 g     F .text	0000072c c_sscanf(char const*, char*, ...)
+00000000 g     F .text	00000048 c_isspace(int)
+00000048 g     F .text	00000044 c_isdigit(int)
+0000008c g     F .text	00000060 c_ishex(int)
+000000ec g     F .text	00000074 hext2int(int)
+00000160 g     F .text	0000065a c_sscanf(char const*, char*, ...)
+000007ba g     F .text	0000004a c_getch()
 00000000 g     O .sbss	00000001 backch
-000008ac g     F .text	00000068 c_getch()
 00000000         *UND*	00000000 getch()
-00000914 g     F .text	00000060 c_getbackch(char)
+00000804 g     F .text	00000044 c_getbackch(char)
 
 
 
@@ -267,43 +156,31 @@ sdcard.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 sdcard.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l    d  .sdata	00000000 .sdata
-00000000 l     F .text	000000ec CRC7(unsigned char const*, unsigned char)
-000001f8 l     F .text	00000080 CRC16(unsigned char const*, unsigned short)
-00000000 l    d  .debug_info	00000000 .debug_info
+0000013c l     F .text	000000b4 CRC7(unsigned char const*, unsigned char)
+0000075a l     F .text	00000056 CRC16(unsigned char const*, unsigned short)
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
+00000000 g     F .text	00000068 CRC16_one(unsigned short, unsigned char)
+00000068 g     F .text	0000002c SPITxRx(unsigned char)
 00000000 g     O .sdata	00000004 IO_SPIRXTX
-00000004 g     O .sdata	00000004 IO_CARDDETECT
-000000ec g     F .text	0000010c CRC16_one(unsigned short, unsigned char)
-00000278 g     F .text	00000054 SPITxRx(unsigned char)
-000002cc g     F .text	00000104 SDCmd(SDCardCommand, unsigned long)
-000003d0 g     F .text	0000004c SDWaitNotBusy()
-0000041c g     F .text	00000080 SDResponse1()
-0000049c g     F .text	000000dc SDResponse7(unsigned long*)
-00000578 g     F .text	00000084 SDIdle()
+00000094 g     F .text	000000a8 SDCmd(SDCardCommand, unsigned int)
+000001f0 g     F .text	00000036 SDWaitNotBusy()
+00000226 g     F .text	0000005c SDResponse1()
+00000282 g     F .text	000000b6 SDResponse7(unsigned int*)
+00000338 g     F .text	0000006e SDIdle()
 00000000         *UND*	00000000 E32Sleep(unsigned long long)
-000005fc g     F .text	00000050 SDCheckVoltageRange()
-0000064c g     F .text	00000094 SDCardInit()
-000006e0 g     F .text	00000048 SDSetBlockSize512()
-00000728 g     F .text	00000128 SDReadSingleBlock(unsigned long, unsigned char*, unsigned char*)
+000003a6 g     F .text	00000032 SDCheckVoltageRange()
+000003d8 g     F .text	0000008c SDCardInit()
+00000464 g     F .text	0000002e SDSetBlockSize512()
+00000492 g     F .text	000000f6 SDReadSingleBlock(unsigned int, unsigned char*, unsigned char*)
 00000000         *UND*	00000000 LEDGetState()
-00000000         *UND*	00000000 LEDSetState(unsigned long)
-00000850 g     F .text	000000c4 SDReadMultipleBlocks(unsigned char*, unsigned long, unsigned long)
-00000914 g     F .text	00000174 SDWriteSingleBlock(unsigned long, unsigned char*)
-00000a88 g     F .text	000000b8 SDWriteMultipleBlocks(unsigned char const*, unsigned long, unsigned long)
-00000b40 g     F .text	00000034 SDIOControl(unsigned char, void*)
-00000b74 g     F .text	000000b0 SDCardStartup()
+00000000         *UND*	00000000 LEDSetState(unsigned int)
+00000588 g     F .text	000000ae SDReadMultipleBlocks(unsigned char*, unsigned int, unsigned int)
+00000636 g     F .text	00000124 SDWriteSingleBlock(unsigned int, unsigned char*)
+000007b0 g     F .text	000000a4 SDWriteMultipleBlocks(unsigned char const*, unsigned int, unsigned int)
+00000854 g     F .text	00000024 SDIOControl(unsigned char, void*)
+00000878 g     F .text	00000094 SDCardStartup()
+00000004 g     O .sdata	00000004 IO_CARDDETECT
 
 
 
@@ -311,31 +188,14 @@ serialinringbuffer.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 serialinringbuffer.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l    d  .srodata	00000000 .srodata
-00000000 l     O .srodata	00000004 cbBufferSizeLog2
-00000004 l     O .srodata	00000001 c_cbBufferSizeLog2
-00000008 l     O .srodata	00000004 c_cbBufferSize
-0000000c l     O .srodata	00000004 c_sizeMask
-00000000 l    d  .sdata	00000000 .sdata
-00000000 l    d  .debug_info	00000000 .debug_info
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
+00000000 g     F .text	00000026 SerialInRingBufferReset()
 00000000 g     O .sdata	00000004 m_si_readOffset
 00000004 g     O .sdata	00000004 m_si_writeOffset
-00000000 g     F .text	00000044 SerialInRingBufferReset()
-00000044 g     F .text	00000120 SerialInRingBufferRead(void*, unsigned long)
+00000026 g     F .text	00000106 SerialInRingBufferRead(void*, unsigned int)
 00000000         *UND*	00000000 memcpy
-00000164 g     F .text	00000124 SerialInRingBufferWrite(void const*, unsigned long)
+0000012c g     F .text	0000010a SerialInRingBufferWrite(void const*, unsigned int)
 
 
 
@@ -343,29 +203,18 @@ task.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 task.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l    d  .debug_info	00000000 .debug_info
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
-00000000 g     F .text	00000048 TaskGetContext(unsigned long)
-00000048 g     F .text	0000003c TaskGetSharedMemory()
-00000084 g     F .text	00000054 TaskSetState(STaskContext*, unsigned long, ETaskState)
-000000d8 g     F .text	0000004c TaskGetState(STaskContext*, unsigned long)
-00000124 g     F .text	0000004c TaskGetPC(STaskContext*, unsigned long)
-00000170 g     F .text	0000009c TaskAdd(STaskContext*, char const*, void (*)(), ETaskState, unsigned long, unsigned long)
-0000020c g     F .text	00000044 TaskExitCurrentTask(STaskContext*)
-00000250 g     F .text	0000005c TaskExitTaskWithID(STaskContext*, unsigned long, unsigned long)
-000002ac g     F .text	00000030 TaskYield()
-000002dc g     F .text	00000054 TaskSwitchToNext(STaskContext*)
+00000000 g     F .text	00000034 TaskGetContext(unsigned int)
+00000034 g     F .text	0000002a TaskGetSharedMemory()
+0000005e g     F .text	00000034 TaskSetState(STaskContext*, unsigned int, ETaskState)
+00000092 g     F .text	0000002c TaskGetState(STaskContext*, unsigned int)
+000000be g     F .text	0000002c TaskGetPC(STaskContext*, unsigned int)
+000000ea g     F .text	00000082 TaskAdd(STaskContext*, char const*, void (*)(), ETaskState, unsigned int, unsigned int)
+0000016c g     F .text	0000002a TaskExitCurrentTask(STaskContext*)
+00000196 g     F .text	0000003e TaskExitTaskWithID(STaskContext*, unsigned int, unsigned int)
+000001d4 g     F .text	00000018 TaskYield()
+000001ec g     F .text	00000042 TaskSwitchToNext(STaskContext*)
 
 
 
@@ -373,78 +222,43 @@ uart.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 uart.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l    d  .text._ZSt5isinfd	00000000 .text._ZSt5isinfd
-00000000 l    d  .text._ZSt5isnand	00000000 .text._ZSt5isnand
-00000000 l    d  .text._Z11tbm_reversePcj	00000000 .text._Z11tbm_reversePcj
-00000000 l    d  .text._Z10tbm_strlenPKc	00000000 .text._Z10tbm_strlenPKc
-00000000 l    d  .rodata	00000000 .rodata
-00000000 l    d  .text._Z9tbm_pow10i	00000000 .text._Z9tbm_pow10i
-00000000 l    d  .text._Z9tbm_roundd	00000000 .text._Z9tbm_roundd
-00000000 l    d  .text._Z9tbm_lltoaxPcj	00000000 .text._Z9tbm_lltoaxPcj
-00000000 l    d  .text._Z10tbm_ulltoayPcjjPKc	00000000 .text._Z10tbm_ulltoayPcjjPKc
-00000000 l    d  .text._Z8tbm_ftoadPcji	00000000 .text._Z8tbm_ftoadPcji
-00000000 l    d  .text._Z13tbm_vsnprintfPcjPKcPv	00000000 .text._Z13tbm_vsnprintfPcjPKcPv
-00000000 l    d  .rodata._Z13tbm_vsnprintfPcjPKcPv	00000000 .rodata._Z13tbm_vsnprintfPcjPKcPv
-00000000 l    d  .sdata	00000000 .sdata
-00000000 l    d  .debug_info	00000000 .debug_info
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_rnglists	00000000 .debug_rnglists
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
-00000000 l    d  .group	00000000 .group
-00000000 l    d  .group	00000000 .group
-00000000 l    d  .group	00000000 .group
-00000000 l    d  .group	00000000 .group
-00000000 l    d  .group	00000000 .group
-00000000 l    d  .group	00000000 .group
-00000000 l    d  .group	00000000 .group
-00000000 l    d  .group	00000000 .group
-00000000 l    d  .group	00000000 .group
-00000000 l    d  .group	00000000 .group
-00000000  w    F .text._ZSt5isinfd	000000c4 std::isinf(double)
-00000000         *UND*	00000000 __unorddf2
-00000000         *UND*	00000000 __ledf2
-00000000  w    F .text._ZSt5isnand	00000068 std::isnan(double)
-00000000  w    F .text._Z11tbm_reversePcj	000000b4 tbm_reverse(char*, unsigned int)
-00000000  w    F .text._Z10tbm_strlenPKc	00000054 tbm_strlen(char const*)
-00000000  w    F .text._Z9tbm_pow10i	000000ac tbm_pow10(int)
-00000000  w    F .text._Z9tbm_roundd	000001a0 tbm_round(double)
+00000000 g     F .text	00000026 UARTInterceptSetState(int)
+00000026 g     F .text	0000001a UARTReceiveData()
+00000000 g     O .sdata	00000004 UARTRECEIVE
+00000040 g     F .text	00000022 UARTSendByte(unsigned char)
+00000004 g     O .sdata	00000004 UARTTRANSMIT
+00000062 g     F .text	00000054 UARTSendBlock(unsigned char*, unsigned int)
+000000b6 g     F .text	0000001a UARTGetStatus()
+00000008 g     O .sdata	00000004 UARTSTATUS
+000000d0 g     F .text	00000022 UARTSetControl(unsigned int)
+0000000c g     O .sdata	00000004 UARTCONTROL
+000000f2 g     F .text	0000006e UARTPrintf(char const*, ...)
+00000000  w    F .text._Z13tbm_vsnprintfPcjPKcPv	000012c0 tbm_vsnprintf(char*, unsigned int, char const*, void*)
+00000000  w    F .text._Z9tbm_lltoaxPcj	0000019e tbm_lltoa(long long, char*, unsigned int)
+00000000  w    F .text._Z10tbm_strlenPKc	00000040 tbm_strlen(char const*)
+00000000  w    F .text._Z10tbm_ulltoayPcjjPKc	00000162 tbm_ulltoa(unsigned long long, char*, unsigned int, unsigned int, char const*)
+00000000  w    F .text._Z8tbm_ftoadPcji	000004b2 tbm_ftoa(double, char*, unsigned int, int)
+00000000         *UND*	00000000 __moddi3
+00000000         *UND*	00000000 __divdi3
+00000000  w    F .text._Z11tbm_reversePcj	00000082 tbm_reverse(char*, unsigned int)
+00000000         *UND*	00000000 __umoddi3
+00000000         *UND*	00000000 __udivdi3
+00000000  w    F .text._ZNSt3__16__math5isnanB8ne190107EUa9enable_ifILb1EEd	00000048 .hidden _ZNSt3__16__math5isnanB8ne190107EUa9enable_ifILb1EEd
+00000000  w    F .text._ZNSt3__16__math5isinfB8ne190107EUa9enable_ifILb1EEd	00000030 .hidden _ZNSt3__16__math5isinfB8ne190107EUa9enable_ifILb1EEd
+00000000         *UND*	00000000 __ltdf2
 00000000         *UND*	00000000 __fixunsdfdi
+00000000  w    F .text._Z9tbm_pow10i	00000042 tbm_pow10(int)
 00000000         *UND*	00000000 __floatundidf
 00000000         *UND*	00000000 __subdf3
+00000000         *UND*	00000000 __muldf3
+00000000  w    F .text._Z9tbm_roundd	00000148 tbm_round(double)
 00000000         *UND*	00000000 __gtdf2
 00000000         *UND*	00000000 __gedf2
 00000000         *UND*	00000000 __adddf3
-00000000  w    F .text._Z9tbm_lltoaxPcj	000001c8 tbm_lltoa(long long, char*, unsigned int)
-00000000         *UND*	00000000 __moddi3
-00000000         *UND*	00000000 __divdi3
-00000000  w    F .text._Z10tbm_ulltoayPcjjPKc	000001b4 tbm_ulltoa(unsigned long long, char*, unsigned int, unsigned int, char const*)
-00000000         *UND*	00000000 __umoddi3
-00000000         *UND*	00000000 __udivdi3
-00000000  w    F .text._Z8tbm_ftoadPcji	00000518 tbm_ftoa(double, char*, unsigned int, int)
-00000000         *UND*	00000000 __ltdf2
-00000000         *UND*	00000000 __muldf3
-00000000  w    F .text._Z13tbm_vsnprintfPcjPKcPv	000010f4 tbm_vsnprintf(char*, unsigned int, char const*, void*)
-00000000 g     O .sdata	00000004 UARTRECEIVE
-00000004 g     O .sdata	00000004 UARTTRANSMIT
-00000008 g     O .sdata	00000004 UARTSTATUS
-0000000c g     O .sdata	00000004 UARTCONTROL
-00000000 g     F .text	0000003c UARTInterceptSetState(int)
-0000003c g     F .text	00000034 UARTReceiveData()
-00000070 g     F .text	00000040 UARTSendByte(unsigned char)
-000000b0 g     F .text	00000070 UARTSendBlock(unsigned char*, unsigned long)
-00000120 g     F .text	00000034 UARTGetStatus()
-00000154 g     F .text	0000003c UARTSetControl(unsigned long)
-00000190 g     F .text	000000a0 UARTPrintf(char const*, ...)
+00000000         *UND*	00000000 __ledf2
+00000000         *UND*	00000000 memcpy
 
 
 
@@ -452,51 +266,38 @@ vpu.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 vpu.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l    d  .rodata	00000000 .rodata
+00000840 l     O .rodata	00000200 vgapalette
 00000000 l     O .rodata	00000800 residentfont
 00000800 l     O .rodata	00000040 quadexpand
-00000840 l     O .rodata	00000200 vgapalette
-00000000 l    d  .sdata	00000000 .sdata
-00000000 l     O .sdata	00000004 s_kernelgfxcontext
-00000000 l    d  .debug_info	00000000 .debug_info
+00000004 l     O .sdata	00000004 s_kernelgfxcontext
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
-00000004 g     O .sdata	00000004 VPUIO
-00000000 g     F .text	00000060 VPUAllocateBuffer(unsigned long)
+00000000 g     F .text	0000003c VPUAllocateBuffer(unsigned int)
 00000000         *UND*	00000000 malloc
-00000060 g     F .text	00000098 VPUSetDefaultPalette(EVideoContext*)
-000000f8 g     F .text	00000070 VPUGetDimensions(EVideoMode, unsigned long*, unsigned long*)
-00000168 g     F .text	0000015c VPUSetVMode(EVideoContext*, EVideoScanoutEnable)
-000002c4 g     F .text	0000005c VPUSetScanoutAddress(EVideoContext*, unsigned long)
-00000320 g     F .text	00000038 VPUSetWriteAddress(EVideoContext*, unsigned long)
-00000358 g     F .text	000000a4 VPUSetPal(unsigned char, unsigned long, unsigned long, unsigned long)
-000003fc g     F .text	00000074 VPUConsoleSetColors(EVideoContext*, unsigned char, unsigned char)
-00000470 g     F .text	000000b8 VPUConsoleClear(EVideoContext*)
+0000003c g     F .text	00000066 VPUSetDefaultPalette(EVideoContext*)
+00000000 g     O .sdata	00000004 VPUIO
+000000a2 g     F .text	0000007a VPUGetDimensions(EVideoMode, unsigned int*, unsigned int*)
+0000011c g     F .text	000000ec VPUSetVMode(EVideoContext*, EVideoScanoutEnable)
+00000208 g     F .text	00000038 VPUSetScanoutAddress(EVideoContext*, unsigned int)
+00000240 g     F .text	00000022 VPUSetWriteAddress(EVideoContext*, unsigned int)
+00000262 g     F .text	00000054 VPUSetPal(unsigned char, unsigned int, unsigned int, unsigned int)
+000002b6 g     F .text	00000032 VPUConsoleSetColors(EVideoContext*, unsigned char, unsigned char)
+000002e8 g     F .text	00000080 VPUConsoleClear(EVideoContext*)
 00000000         *UND*	00000000 memset
-00000528 g     F .text	00000054 VPUConsoleSetCursor(EVideoContext*, unsigned short, unsigned short)
-0000057c g     F .text	0000006c VPUConsoleSetCaret(EVideoContext*, unsigned short, unsigned short, unsigned short)
-000005e8 g     F .text	0000014c VPUConsoleScrollUp(EVideoContext*)
+00000368 g     F .text	00000034 VPUConsoleSetCursor(EVideoContext*, unsigned short, unsigned short)
+0000039c g     F .text	00000044 VPUConsoleSetCaret(EVideoContext*, unsigned short, unsigned short, unsigned short)
+000003e0 g     F .text	000000d6 VPUConsoleScrollUp(EVideoContext*)
 00000000         *UND*	00000000 memcpy
-00000734 g     F .text	000001fc VPUConsolePrint(EVideoContext*, char const*, int)
-00000930 g     F .text	00000160 VPUConsoleFillLine(EVideoContext*, char)
-00000a90 g     F .text	00000390 VPUConsoleResolve(EVideoContext*)
-00000e20 g     F .text	000000c8 VPUConsoleClearLine(EVideoContext*, unsigned short)
-00000ee8 g     F .text	00000274 VPUPrintString(EVideoContext*, unsigned char, unsigned char, unsigned short, unsigned short, char const*, int)
-0000115c g     F .text	0000008c VPUClear(EVideoContext*, unsigned long)
-000011e8 g     F .text	00000038 VPUReadVBlankCounter()
-00001220 g     F .text	0000003c VPUGetScanline()
-0000125c g     F .text	000000c8 VPUSwapPages(EVideoContext*, EVideoSwapContext*)
-00001324 g     F .text	0000004c VPUWaitVSync()
-00001370 g     F .text	00000030 VPUGetKernelGfxContext()
+000004b6 g     F .text	000001e2 VPUConsolePrint(EVideoContext*, char const*, int)
+00000698 g     F .text	00000134 VPUConsoleFillLine(EVideoContext*, char)
+000007cc g     F .text	000002e4 VPUConsoleResolve(EVideoContext*)
+00000ab0 g     F .text	00000092 VPUConsoleClearLine(EVideoContext*, unsigned short)
+00000b42 g     F .text	000001e8 VPUPrintString(EVideoContext*, unsigned char, unsigned char, unsigned short, unsigned short, char const*, int)
+00000d2a g     F .text	0000006c VPUClear(EVideoContext*, unsigned int)
+00000d96 g     F .text	0000001c VPUReadVBlankCounter()
+00000db2 g     F .text	0000001e VPUGetScanline()
+00000dd0 g     F .text	000000a6 VPUSwapPages(EVideoContext*, EVideoSwapContext*)
+00000e76 g     F .text	0000003a VPUWaitVSync()
+00000eb0 g     F .text	00000018 VPUGetKernelGfxContext()
 
 

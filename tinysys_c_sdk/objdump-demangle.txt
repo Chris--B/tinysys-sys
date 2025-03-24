@@ -4,26 +4,14 @@ apu.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 apu.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l    d  .sdata	00000000 .sdata
-00000000 l    d  .debug_info	00000000 .debug_info
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
-00000000 g     O .sdata	00000004 IO_AUDIOOUT
-00000000 g     F .text	00000050 _Z17APUAllocateBufferm
+00000000 g     F .text	00000034 _Z17APUAllocateBufferj
 00000000         *UND*	00000000 malloc
-00000050 g     F .text	00000050 _Z16APUSetBufferSizem
-000000a0 g     F .text	00000050 _Z11APUStartDMAm
-000000f0 g     F .text	00000050 _Z16APUSetSampleRate14EAPUSampleRate
+00000034 g     F .text	0000002c _Z16APUSetBufferSizej
+00000000 g     O .sdata	00000004 IO_AUDIOOUT
+00000060 g     F .text	0000002a _Z11APUStartDMAj
+0000008a g     F .text	0000002a _Z16APUSetSampleRate14EAPUSampleRate
 
 
 
@@ -31,36 +19,25 @@ basesystem.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 basesystem.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l    d  .debug_info	00000000 .debug_info
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
-00000000 g     F .text	0000007c _Z11E32ReadTimev
-0000007c g     F .text	0000007c _Z13E32ReadCyclesv
-000000f8 g     F .text	000000b8 _Z8E32Sleepy
-000001b0 g     F .text	00000070 _Z26E32ReadRetiredInstructionsv
-00000220 g     F .text	0000005c _Z9ClockToMsy
+00000000 g     F .text	00000044 _Z11E32ReadTimev
+00000044 g     F .text	00000044 _Z13E32ReadCyclesv
+00000088 g     F .text	00000084 _Z8E32Sleepy
+0000010c g     F .text	00000038 _Z26E32ReadRetiredInstructionsv
+00000144 g     F .text	00000030 _Z9ClockToMsy
 00000000         *UND*	00000000 __udivdi3
-0000027c g     F .text	00000058 _Z9ClockToUsy
-000002d4 g     F .text	000000ec _Z12ClockMsToHMSmPmS_S_
-000003c0 g     F .text	0000004c _Z17E32SetTimeComparey
-0000040c g     F .text	0000007c _Z20E32WriteMemMappedCSRmmm
-00000488 g     F .text	00000074 _Z19E32ReadMemMappedCSRmm
-000004fc g     F .text	00000054 _Z11E32SetupCPUmPv
-00000550 g     F .text	00000050 _Z11E32ResetCPUm
-000005a0 g     F .text	00000050 _Z13E32ClearResetm
-000005f0 g     F .text	00000030 _Z23E32BeginCriticalSectionv
-00000620 g     F .text	00000030 _Z21E32EndCriticalSectionv
-00000650 g     F .text	00000028 _Z16E32GetScratchpadv
+00000174 g     F .text	00000050 _Z9ClockToUsy
+000001c4 g     F .text	000000b4 _Z12ClockMsToHMSjPjS_S_
+00000278 g     F .text	00000042 _Z17E32SetTimeComparey
+000002ba g     F .text	0000005a _Z20E32WriteMemMappedCSRjjj
+00000314 g     F .text	00000060 _Z19E32ReadMemMappedCSRjj
+00000374 g     F .text	0000003c _Z11E32SetupCPUjPv
+000003b0 g     F .text	00000036 _Z11E32ResetCPUj
+000003e6 g     F .text	00000036 _Z13E32ClearResetj
+0000041c g     F .text	00000024 _Z23E32BeginCriticalSectionv
+00000440 g     F .text	00000024 _Z21E32EndCriticalSectionv
+00000464 g     F .text	00000014 _Z16E32GetScratchpadv
 
 
 
@@ -68,23 +45,12 @@ core.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 core.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l    d  .debug_info	00000000 .debug_info
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
-00000000 g     F .text	00000064 getcwd
-00000064 g     F .text	00000050 chdir
-000000b4 g     F .text	00000050 _brk
-00000104 g     F .text	00000074 _sbrk
+00000000 g     F .text	00000052 getcwd
+00000052 g     F .text	00000042 chdir
+00000094 g     F .text	00000042 _brk
+000000d6 g     F .text	0000005a _sbrk
 
 
 
@@ -92,27 +58,17 @@ joystick.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 joystick.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l    d  .rodata	00000000 .rodata
-00000000 l    d  .debug_info	00000000 .debug_info
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
-00000000 g     F .text	00000084 _Z15ReadButtonStatePh
-00000000         *UND*	00000000 _Z22SerialInRingBufferReadPvm
-00000084 g     F .text	00000084 _Z13ReadAxisStatePh
-00000108 g     F .text	00000080 _Z18ProcessButtonStatePh
-00000188 g     F .text	00000190 _Z16ProcessAxisStatePh
-00000318 g     F .text	00000044 _Z19UpdateJoystickStatev
-0000035c g     F .text	0000002c _Z16JoystickGetStatev
+00000000 g     F .text	0000005a _Z15ReadButtonStatePh
+00000000         *UND*	00000000 _Z22SerialInRingBufferReadPvj
+0000005a g     F .text	0000005a _Z13ReadAxisStatePh
+000000b4 g     F .text	00000038 _Z18ProcessButtonStatePh
+000000ec g     F .text	00000132 _Z16ProcessAxisStatePh
+00000000         *UND*	00000000 __floatsisf
+00000000         *UND*	00000000 __divsf3
+0000021e g     F .text	0000002a _Z19UpdateJoystickStatev
+00000248 g     F .text	00000018 _Z16JoystickGetStatev
 
 
 
@@ -120,30 +76,19 @@ keyboard.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 keyboard.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l     O .bss	00000004 _ZL9s_control
-00000004 l     O .bss	00000004 _ZL5s_alt
-00000000 l    d  .debug_info	00000000 .debug_info
+00000000 l     O .sbss	00000004 _ZL9s_control
+00000004 l     O .sbss	00000004 _ZL5s_alt
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
-00000000 g     O .data	00000100 scantoasciitable_lowercase
+00000000 g     F .text	00000204 _Z15ProcessKeyStatePh
+00000000         *UND*	00000000 _Z18KeyRingBufferWritePKvj
+00000204 g     F .text	00000054 _Z23KeyboardScanCodeToASCIIhh
 00000100 g     O .data	00000100 scantoasciitable_uppercase
-00000000 g     F .text	00000278 _Z15ProcessKeyStatePh
-00000000         *UND*	00000000 _Z18KeyRingBufferWritePKvm
-00000424 g     F .text	00000078 _Z23KeyboardScanCodeToASCIIhh
-00000278 g     F .text	00000100 _Z19UpdateKeyboardStatePh
-00000378 g     F .text	00000028 _Z16KeyboardGetStatev
-000003a0 g     F .text	00000084 _Z12ReadKeyStatePh
-00000000         *UND*	00000000 _Z22SerialInRingBufferReadPvm
+00000000 g     O .data	00000100 scantoasciitable_lowercase
+00000258 g     F .text	000000a0 _Z19UpdateKeyboardStatePh
+000002f8 g     F .text	00000014 _Z16KeyboardGetStatev
+0000030c g     F .text	0000005a _Z12ReadKeyStatePh
+00000000         *UND*	00000000 _Z22SerialInRingBufferReadPvj
 
 
 
@@ -151,31 +96,14 @@ keyringbuffer.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 keyringbuffer.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l    d  .srodata	00000000 .srodata
-00000000 l     O .srodata	00000004 _ZL16cbBufferSizeLog2
-00000004 l     O .srodata	00000001 _ZL18c_cbBufferSizeLog2
-00000008 l     O .srodata	00000004 _ZL14c_cbBufferSize
-0000000c l     O .srodata	00000004 _ZL10c_sizeMask
-00000000 l    d  .sdata	00000000 .sdata
-00000000 l    d  .debug_info	00000000 .debug_info
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
+00000000 g     F .text	00000026 _Z18KeyRingBufferResetv
 00000000 g     O .sdata	00000004 m_readOffset
 00000004 g     O .sdata	00000004 m_writeOffset
-00000000 g     F .text	00000044 _Z18KeyRingBufferResetv
-00000044 g     F .text	00000120 _Z17KeyRingBufferReadPvm
+00000026 g     F .text	00000106 _Z17KeyRingBufferReadPvj
 00000000         *UND*	00000000 memcpy
-00000164 g     F .text	00000124 _Z18KeyRingBufferWritePKvm
+0000012c g     F .text	0000010a _Z18KeyRingBufferWritePKvj
 
 
 
@@ -183,23 +111,11 @@ leds.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 leds.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l    d  .sdata	00000000 .sdata
-00000000 l    d  .debug_info	00000000 .debug_info
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
+00000000 g     F .text	0000001a _Z11LEDGetStatev
 00000000 g     O .sdata	00000004 LEDSTATE
-00000000 g     F .text	00000034 _Z11LEDGetStatev
-00000034 g     F .text	0000003c _Z11LEDSetStatem
+0000001a g     F .text	00000022 _Z11LEDSetStatej
 
 
 
@@ -207,27 +123,14 @@ mini-printf.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 mini-printf.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l     F .text	00000054 _ZL11mini_strlenPKc
-00000054 l     F .text	00000200 _ZL9mini_itoaijjjPcj
-00000254 l     F .text	0000008c _ZL5_putciP9mini_buff
-000002e0 l     F .text	000000dc _ZL5_putsPcjP9mini_buff
-00000000 l    d  .rodata	00000000 .rodata
-00000000 l    d  .debug_info	00000000 .debug_info
+00000286 l     F .text	00000060 _ZL5_putciP9mini_buff
+000002e6 l     F .text	000001ea _ZL9mini_itoaijjjPcj
+000004d0 l     F .text	000000a2 _ZL5_putsPcjP9mini_buff
+00000572 l     F .text	0000003e _ZL11mini_strlenPKc
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_rnglists	00000000 .debug_rnglists
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
-000003bc g     F .text	000002f4 mini_vsnprintf
-000006b0 g     F .text	0000007c mini_snprintf
+00000000 g     F .text	00000286 mini_vsnprintf
+000005b0 g     F .text	00000052 mini_snprintf
 
 
 
@@ -235,31 +138,17 @@ mini-scanf.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 mini-scanf.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l    d  .rodata	00000000 .rodata
-00000000 l    d  .sbss	00000000 .sbss
-00000000 l    d  .debug_info	00000000 .debug_info
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_rnglists	00000000 .debug_rnglists
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
-00000000 g     F .text	0000005c _Z9c_isspacei
-0000005c g     F .text	0000004c _Z9c_isdigiti
-000000a8 g     F .text	00000064 _Z7c_ishexi
-0000010c g     F .text	00000074 _Z8hext2inti
-00000180 g     F .text	0000072c _Z8c_sscanfPKcPcz
+00000000 g     F .text	00000048 _Z9c_isspacei
+00000048 g     F .text	00000044 _Z9c_isdigiti
+0000008c g     F .text	00000060 _Z7c_ishexi
+000000ec g     F .text	00000074 _Z8hext2inti
+00000160 g     F .text	0000065a _Z8c_sscanfPKcPcz
+000007ba g     F .text	0000004a _Z7c_getchv
 00000000 g     O .sbss	00000001 backch
-000008ac g     F .text	00000068 _Z7c_getchv
 00000000         *UND*	00000000 _Z5getchv
-00000914 g     F .text	00000060 _Z11c_getbackchc
+00000804 g     F .text	00000044 _Z11c_getbackchc
 
 
 
@@ -267,43 +156,31 @@ sdcard.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 sdcard.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l    d  .sdata	00000000 .sdata
-00000000 l     F .text	000000ec _ZL4CRC7PKhh
-000001f8 l     F .text	00000080 _ZL5CRC16PKht
-00000000 l    d  .debug_info	00000000 .debug_info
+0000013c l     F .text	000000b4 _ZL4CRC7PKhh
+0000075a l     F .text	00000056 _ZL5CRC16PKht
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
+00000000 g     F .text	00000068 _Z9CRC16_oneth
+00000068 g     F .text	0000002c _Z7SPITxRxh
 00000000 g     O .sdata	00000004 IO_SPIRXTX
-00000004 g     O .sdata	00000004 IO_CARDDETECT
-000000ec g     F .text	0000010c _Z9CRC16_oneth
-00000278 g     F .text	00000054 _Z7SPITxRxh
-000002cc g     F .text	00000104 _Z5SDCmd13SDCardCommandm
-000003d0 g     F .text	0000004c _Z13SDWaitNotBusyv
-0000041c g     F .text	00000080 _Z11SDResponse1v
-0000049c g     F .text	000000dc _Z11SDResponse7Pm
-00000578 g     F .text	00000084 _Z6SDIdlev
+00000094 g     F .text	000000a8 _Z5SDCmd13SDCardCommandj
+000001f0 g     F .text	00000036 _Z13SDWaitNotBusyv
+00000226 g     F .text	0000005c _Z11SDResponse1v
+00000282 g     F .text	000000b6 _Z11SDResponse7Pj
+00000338 g     F .text	0000006e _Z6SDIdlev
 00000000         *UND*	00000000 _Z8E32Sleepy
-000005fc g     F .text	00000050 _Z19SDCheckVoltageRangev
-0000064c g     F .text	00000094 _Z10SDCardInitv
-000006e0 g     F .text	00000048 _Z17SDSetBlockSize512v
-00000728 g     F .text	00000128 _Z17SDReadSingleBlockmPhS_
+000003a6 g     F .text	00000032 _Z19SDCheckVoltageRangev
+000003d8 g     F .text	0000008c _Z10SDCardInitv
+00000464 g     F .text	0000002e _Z17SDSetBlockSize512v
+00000492 g     F .text	000000f6 _Z17SDReadSingleBlockjPhS_
 00000000         *UND*	00000000 _Z11LEDGetStatev
-00000000         *UND*	00000000 _Z11LEDSetStatem
-00000850 g     F .text	000000c4 _Z20SDReadMultipleBlocksPhmm
-00000914 g     F .text	00000174 _Z18SDWriteSingleBlockmPh
-00000a88 g     F .text	000000b8 _Z21SDWriteMultipleBlocksPKhmm
-00000b40 g     F .text	00000034 _Z11SDIOControlhPv
-00000b74 g     F .text	000000b0 _Z13SDCardStartupv
+00000000         *UND*	00000000 _Z11LEDSetStatej
+00000588 g     F .text	000000ae _Z20SDReadMultipleBlocksPhjj
+00000636 g     F .text	00000124 _Z18SDWriteSingleBlockjPh
+000007b0 g     F .text	000000a4 _Z21SDWriteMultipleBlocksPKhjj
+00000854 g     F .text	00000024 _Z11SDIOControlhPv
+00000878 g     F .text	00000094 _Z13SDCardStartupv
+00000004 g     O .sdata	00000004 IO_CARDDETECT
 
 
 
@@ -311,31 +188,14 @@ serialinringbuffer.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 serialinringbuffer.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l    d  .srodata	00000000 .srodata
-00000000 l     O .srodata	00000004 _ZL16cbBufferSizeLog2
-00000004 l     O .srodata	00000001 _ZL18c_cbBufferSizeLog2
-00000008 l     O .srodata	00000004 _ZL14c_cbBufferSize
-0000000c l     O .srodata	00000004 _ZL10c_sizeMask
-00000000 l    d  .sdata	00000000 .sdata
-00000000 l    d  .debug_info	00000000 .debug_info
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
+00000000 g     F .text	00000026 _Z23SerialInRingBufferResetv
 00000000 g     O .sdata	00000004 m_si_readOffset
 00000004 g     O .sdata	00000004 m_si_writeOffset
-00000000 g     F .text	00000044 _Z23SerialInRingBufferResetv
-00000044 g     F .text	00000120 _Z22SerialInRingBufferReadPvm
+00000026 g     F .text	00000106 _Z22SerialInRingBufferReadPvj
 00000000         *UND*	00000000 memcpy
-00000164 g     F .text	00000124 _Z23SerialInRingBufferWritePKvm
+0000012c g     F .text	0000010a _Z23SerialInRingBufferWritePKvj
 
 
 
@@ -343,29 +203,18 @@ task.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 task.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l    d  .debug_info	00000000 .debug_info
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
-00000000 g     F .text	00000048 _Z14TaskGetContextm
-00000048 g     F .text	0000003c _Z19TaskGetSharedMemoryv
-00000084 g     F .text	00000054 _Z12TaskSetStateP12STaskContextm10ETaskState
-000000d8 g     F .text	0000004c _Z12TaskGetStateP12STaskContextm
-00000124 g     F .text	0000004c _Z9TaskGetPCP12STaskContextm
-00000170 g     F .text	0000009c _Z7TaskAddP12STaskContextPKcPFvvE10ETaskStatemm
-0000020c g     F .text	00000044 _Z19TaskExitCurrentTaskP12STaskContext
-00000250 g     F .text	0000005c _Z18TaskExitTaskWithIDP12STaskContextmm
-000002ac g     F .text	00000030 _Z9TaskYieldv
-000002dc g     F .text	00000054 _Z16TaskSwitchToNextP12STaskContext
+00000000 g     F .text	00000034 _Z14TaskGetContextj
+00000034 g     F .text	0000002a _Z19TaskGetSharedMemoryv
+0000005e g     F .text	00000034 _Z12TaskSetStateP12STaskContextj10ETaskState
+00000092 g     F .text	0000002c _Z12TaskGetStateP12STaskContextj
+000000be g     F .text	0000002c _Z9TaskGetPCP12STaskContextj
+000000ea g     F .text	00000082 _Z7TaskAddP12STaskContextPKcPFvvE10ETaskStatejj
+0000016c g     F .text	0000002a _Z19TaskExitCurrentTaskP12STaskContext
+00000196 g     F .text	0000003e _Z18TaskExitTaskWithIDP12STaskContextjj
+000001d4 g     F .text	00000018 _Z9TaskYieldv
+000001ec g     F .text	00000042 _Z16TaskSwitchToNextP12STaskContext
 
 
 
@@ -373,78 +222,43 @@ uart.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 uart.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l    d  .text._ZSt5isinfd	00000000 .text._ZSt5isinfd
-00000000 l    d  .text._ZSt5isnand	00000000 .text._ZSt5isnand
-00000000 l    d  .text._Z11tbm_reversePcj	00000000 .text._Z11tbm_reversePcj
-00000000 l    d  .text._Z10tbm_strlenPKc	00000000 .text._Z10tbm_strlenPKc
-00000000 l    d  .rodata	00000000 .rodata
-00000000 l    d  .text._Z9tbm_pow10i	00000000 .text._Z9tbm_pow10i
-00000000 l    d  .text._Z9tbm_roundd	00000000 .text._Z9tbm_roundd
-00000000 l    d  .text._Z9tbm_lltoaxPcj	00000000 .text._Z9tbm_lltoaxPcj
-00000000 l    d  .text._Z10tbm_ulltoayPcjjPKc	00000000 .text._Z10tbm_ulltoayPcjjPKc
-00000000 l    d  .text._Z8tbm_ftoadPcji	00000000 .text._Z8tbm_ftoadPcji
-00000000 l    d  .text._Z13tbm_vsnprintfPcjPKcPv	00000000 .text._Z13tbm_vsnprintfPcjPKcPv
-00000000 l    d  .rodata._Z13tbm_vsnprintfPcjPKcPv	00000000 .rodata._Z13tbm_vsnprintfPcjPKcPv
-00000000 l    d  .sdata	00000000 .sdata
-00000000 l    d  .debug_info	00000000 .debug_info
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_rnglists	00000000 .debug_rnglists
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
-00000000 l    d  .group	00000000 .group
-00000000 l    d  .group	00000000 .group
-00000000 l    d  .group	00000000 .group
-00000000 l    d  .group	00000000 .group
-00000000 l    d  .group	00000000 .group
-00000000 l    d  .group	00000000 .group
-00000000 l    d  .group	00000000 .group
-00000000 l    d  .group	00000000 .group
-00000000 l    d  .group	00000000 .group
-00000000 l    d  .group	00000000 .group
-00000000  w    F .text._ZSt5isinfd	000000c4 _ZSt5isinfd
-00000000         *UND*	00000000 __unorddf2
-00000000         *UND*	00000000 __ledf2
-00000000  w    F .text._ZSt5isnand	00000068 _ZSt5isnand
-00000000  w    F .text._Z11tbm_reversePcj	000000b4 _Z11tbm_reversePcj
-00000000  w    F .text._Z10tbm_strlenPKc	00000054 _Z10tbm_strlenPKc
-00000000  w    F .text._Z9tbm_pow10i	000000ac _Z9tbm_pow10i
-00000000  w    F .text._Z9tbm_roundd	000001a0 _Z9tbm_roundd
+00000000 g     F .text	00000026 _Z21UARTInterceptSetStatei
+00000026 g     F .text	0000001a _Z15UARTReceiveDatav
+00000000 g     O .sdata	00000004 UARTRECEIVE
+00000040 g     F .text	00000022 _Z12UARTSendByteh
+00000004 g     O .sdata	00000004 UARTTRANSMIT
+00000062 g     F .text	00000054 _Z13UARTSendBlockPhj
+000000b6 g     F .text	0000001a _Z13UARTGetStatusv
+00000008 g     O .sdata	00000004 UARTSTATUS
+000000d0 g     F .text	00000022 _Z14UARTSetControlj
+0000000c g     O .sdata	00000004 UARTCONTROL
+000000f2 g     F .text	0000006e _Z10UARTPrintfPKcz
+00000000  w    F .text._Z13tbm_vsnprintfPcjPKcPv	000012c0 _Z13tbm_vsnprintfPcjPKcPv
+00000000  w    F .text._Z9tbm_lltoaxPcj	0000019e _Z9tbm_lltoaxPcj
+00000000  w    F .text._Z10tbm_strlenPKc	00000040 _Z10tbm_strlenPKc
+00000000  w    F .text._Z10tbm_ulltoayPcjjPKc	00000162 _Z10tbm_ulltoayPcjjPKc
+00000000  w    F .text._Z8tbm_ftoadPcji	000004b2 _Z8tbm_ftoadPcji
+00000000         *UND*	00000000 __moddi3
+00000000         *UND*	00000000 __divdi3
+00000000  w    F .text._Z11tbm_reversePcj	00000082 _Z11tbm_reversePcj
+00000000         *UND*	00000000 __umoddi3
+00000000         *UND*	00000000 __udivdi3
+00000000  w    F .text._ZNSt3__16__math5isnanB8ne190107EUa9enable_ifILb1EEd	00000048 .hidden _ZNSt3__16__math5isnanB8ne190107EUa9enable_ifILb1EEd
+00000000  w    F .text._ZNSt3__16__math5isinfB8ne190107EUa9enable_ifILb1EEd	00000030 .hidden _ZNSt3__16__math5isinfB8ne190107EUa9enable_ifILb1EEd
+00000000         *UND*	00000000 __ltdf2
 00000000         *UND*	00000000 __fixunsdfdi
+00000000  w    F .text._Z9tbm_pow10i	00000042 _Z9tbm_pow10i
 00000000         *UND*	00000000 __floatundidf
 00000000         *UND*	00000000 __subdf3
+00000000         *UND*	00000000 __muldf3
+00000000  w    F .text._Z9tbm_roundd	00000148 _Z9tbm_roundd
 00000000         *UND*	00000000 __gtdf2
 00000000         *UND*	00000000 __gedf2
 00000000         *UND*	00000000 __adddf3
-00000000  w    F .text._Z9tbm_lltoaxPcj	000001c8 _Z9tbm_lltoaxPcj
-00000000         *UND*	00000000 __moddi3
-00000000         *UND*	00000000 __divdi3
-00000000  w    F .text._Z10tbm_ulltoayPcjjPKc	000001b4 _Z10tbm_ulltoayPcjjPKc
-00000000         *UND*	00000000 __umoddi3
-00000000         *UND*	00000000 __udivdi3
-00000000  w    F .text._Z8tbm_ftoadPcji	00000518 _Z8tbm_ftoadPcji
-00000000         *UND*	00000000 __ltdf2
-00000000         *UND*	00000000 __muldf3
-00000000  w    F .text._Z13tbm_vsnprintfPcjPKcPv	000010f4 _Z13tbm_vsnprintfPcjPKcPv
-00000000 g     O .sdata	00000004 UARTRECEIVE
-00000004 g     O .sdata	00000004 UARTTRANSMIT
-00000008 g     O .sdata	00000004 UARTSTATUS
-0000000c g     O .sdata	00000004 UARTCONTROL
-00000000 g     F .text	0000003c _Z21UARTInterceptSetStatei
-0000003c g     F .text	00000034 _Z15UARTReceiveDatav
-00000070 g     F .text	00000040 _Z12UARTSendByteh
-000000b0 g     F .text	00000070 _Z13UARTSendBlockPhm
-00000120 g     F .text	00000034 _Z13UARTGetStatusv
-00000154 g     F .text	0000003c _Z14UARTSetControlm
-00000190 g     F .text	000000a0 _Z10UARTPrintfPKcz
+00000000         *UND*	00000000 __ledf2
+00000000         *UND*	00000000 memcpy
 
 
 
@@ -452,51 +266,38 @@ vpu.o:     file format elf32-littleriscv
 
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 vpu.c
-00000000 l    d  .text	00000000 .text
-00000000 l    d  .data	00000000 .data
-00000000 l    d  .bss	00000000 .bss
-00000000 l    d  .rodata	00000000 .rodata
+00000840 l     O .rodata	00000200 _ZL10vgapalette
 00000000 l     O .rodata	00000800 _ZL12residentfont
 00000800 l     O .rodata	00000040 _ZL10quadexpand
-00000840 l     O .rodata	00000200 _ZL10vgapalette
-00000000 l    d  .sdata	00000000 .sdata
-00000000 l     O .sdata	00000004 _ZL18s_kernelgfxcontext
-00000000 l    d  .debug_info	00000000 .debug_info
+00000004 l     O .sdata	00000004 _ZL18s_kernelgfxcontext
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
-00000000 l    d  .debug_aranges	00000000 .debug_aranges
-00000000 l    d  .debug_line	00000000 .debug_line
-00000000 l    d  .debug_str	00000000 .debug_str
 00000000 l    d  .debug_line_str	00000000 .debug_line_str
-00000000 l    d  .note.GNU-stack	00000000 .note.GNU-stack
-00000000 l    d  .comment	00000000 .comment
-00000000 l    d  .eh_frame	00000000 .eh_frame
-00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
-00000004 g     O .sdata	00000004 VPUIO
-00000000 g     F .text	00000060 _Z17VPUAllocateBufferm
+00000000 g     F .text	0000003c _Z17VPUAllocateBufferj
 00000000         *UND*	00000000 malloc
-00000060 g     F .text	00000098 _Z20VPUSetDefaultPaletteP13EVideoContext
-000000f8 g     F .text	00000070 _Z16VPUGetDimensions10EVideoModePmS0_
-00000168 g     F .text	0000015c _Z11VPUSetVModeP13EVideoContext19EVideoScanoutEnable
-000002c4 g     F .text	0000005c _Z20VPUSetScanoutAddressP13EVideoContextm
-00000320 g     F .text	00000038 _Z18VPUSetWriteAddressP13EVideoContextm
-00000358 g     F .text	000000a4 _Z9VPUSetPalhmmm
-000003fc g     F .text	00000074 _Z19VPUConsoleSetColorsP13EVideoContexthh
-00000470 g     F .text	000000b8 _Z15VPUConsoleClearP13EVideoContext
+0000003c g     F .text	00000066 _Z20VPUSetDefaultPaletteP13EVideoContext
+00000000 g     O .sdata	00000004 VPUIO
+000000a2 g     F .text	0000007a _Z16VPUGetDimensions10EVideoModePjS0_
+0000011c g     F .text	000000ec _Z11VPUSetVModeP13EVideoContext19EVideoScanoutEnable
+00000208 g     F .text	00000038 _Z20VPUSetScanoutAddressP13EVideoContextj
+00000240 g     F .text	00000022 _Z18VPUSetWriteAddressP13EVideoContextj
+00000262 g     F .text	00000054 _Z9VPUSetPalhjjj
+000002b6 g     F .text	00000032 _Z19VPUConsoleSetColorsP13EVideoContexthh
+000002e8 g     F .text	00000080 _Z15VPUConsoleClearP13EVideoContext
 00000000         *UND*	00000000 memset
-00000528 g     F .text	00000054 _Z19VPUConsoleSetCursorP13EVideoContexttt
-0000057c g     F .text	0000006c _Z18VPUConsoleSetCaretP13EVideoContextttt
-000005e8 g     F .text	0000014c _Z18VPUConsoleScrollUpP13EVideoContext
+00000368 g     F .text	00000034 _Z19VPUConsoleSetCursorP13EVideoContexttt
+0000039c g     F .text	00000044 _Z18VPUConsoleSetCaretP13EVideoContextttt
+000003e0 g     F .text	000000d6 _Z18VPUConsoleScrollUpP13EVideoContext
 00000000         *UND*	00000000 memcpy
-00000734 g     F .text	000001fc _Z15VPUConsolePrintP13EVideoContextPKci
-00000930 g     F .text	00000160 _Z18VPUConsoleFillLineP13EVideoContextc
-00000a90 g     F .text	00000390 _Z17VPUConsoleResolveP13EVideoContext
-00000e20 g     F .text	000000c8 _Z19VPUConsoleClearLineP13EVideoContextt
-00000ee8 g     F .text	00000274 _Z14VPUPrintStringP13EVideoContexthhttPKci
-0000115c g     F .text	0000008c _Z8VPUClearP13EVideoContextm
-000011e8 g     F .text	00000038 _Z20VPUReadVBlankCounterv
-00001220 g     F .text	0000003c _Z14VPUGetScanlinev
-0000125c g     F .text	000000c8 _Z12VPUSwapPagesP13EVideoContextP17EVideoSwapContext
-00001324 g     F .text	0000004c _Z12VPUWaitVSyncv
-00001370 g     F .text	00000030 _Z22VPUGetKernelGfxContextv
+000004b6 g     F .text	000001e2 _Z15VPUConsolePrintP13EVideoContextPKci
+00000698 g     F .text	00000134 _Z18VPUConsoleFillLineP13EVideoContextc
+000007cc g     F .text	000002e4 _Z17VPUConsoleResolveP13EVideoContext
+00000ab0 g     F .text	00000092 _Z19VPUConsoleClearLineP13EVideoContextt
+00000b42 g     F .text	000001e8 _Z14VPUPrintStringP13EVideoContexthhttPKci
+00000d2a g     F .text	0000006c _Z8VPUClearP13EVideoContextj
+00000d96 g     F .text	0000001c _Z20VPUReadVBlankCounterv
+00000db2 g     F .text	0000001e _Z14VPUGetScanlinev
+00000dd0 g     F .text	000000a6 _Z12VPUSwapPagesP13EVideoContextP17EVideoSwapContext
+00000e76 g     F .text	0000003a _Z12VPUWaitVSyncv
+00000eb0 g     F .text	00000018 _Z22VPUGetKernelGfxContextv
 
 
