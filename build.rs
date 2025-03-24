@@ -4,6 +4,9 @@ fn main() {
     // TODO: We should skip bindgen for rust-analyzer, clippy, and cargo-doc
     #[cfg(feature = "bindgen")]
     do_bindgen();
+
+    println!("cargo::rustc-link-search=STATIC={}", ".");
+    println!("cargo::rustc-link-lib={}", "tinysys_sdk");
 }
 
 #[cfg(feature = "bindgen")]
@@ -26,6 +29,8 @@ fn do_bindgen() {
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
         .use_core()
         .clang_args(["-I", "tinysys_c_sdk/SDK"])
+        .clang_args(["-x", "c++"])
+        .clang_args(["-std=c++20"])
         // This accepts all functions, but now bindgen will only consider
         // items needed by a function definition. This eliminates >80% of
         // the symbols typically found.

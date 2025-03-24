@@ -11,18 +11,10 @@ impl<T: Copy + Default, const N: usize> Default for __BindgenOpaqueArray<T, N> {
         Self([<T as Default>::default(); N])
     }
 }
-pub type __int_least64_t = u64;
 pub type __intmax_t = u64;
 pub type __uintmax_t = u64;
 pub type intmax_t = __intmax_t;
 pub type uintmax_t = __uintmax_t;
-pub type wchar_t = ::core::ffi::c_int;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct __locale_t {
-    _unused: [u8; 0],
-}
-pub type locale_t = *mut __locale_t;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct imaxdiv_t {
@@ -42,52 +34,7 @@ pub const EAPUSampleRate_ASR_11_025_Hz: EAPUSampleRate = 2;
 pub const EAPUSampleRate_ASR_Halt: EAPUSampleRate = 3;
 pub type EAPUSampleRate = ::core::ffi::c_uint;
 pub type _off_t = u32;
-pub type __off_t = u32;
 pub type _fpos_t = u32;
-pub type __suseconds_t = u32;
-pub type __sigset_t = u32;
-pub type suseconds_t = __suseconds_t;
-pub type time_t = __int_least64_t;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct timeval {
-    pub tv_sec: time_t,
-    pub tv_usec: suseconds_t,
-}
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of timeval"][::core::mem::size_of::<timeval>() - 16usize];
-    ["Alignment of timeval"][::core::mem::align_of::<timeval>() - 8usize];
-    ["Offset of field: timeval::tv_sec"][::core::mem::offset_of!(timeval, tv_sec) - 0usize];
-    ["Offset of field: timeval::tv_usec"][::core::mem::offset_of!(timeval, tv_usec) - 8usize];
-};
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct timespec {
-    pub tv_sec: time_t,
-    pub tv_nsec: ::core::ffi::c_long,
-}
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of timespec"][::core::mem::size_of::<timespec>() - 16usize];
-    ["Alignment of timespec"][::core::mem::align_of::<timespec>() - 8usize];
-    ["Offset of field: timespec::tv_sec"][::core::mem::offset_of!(timespec, tv_sec) - 0usize];
-    ["Offset of field: timespec::tv_nsec"][::core::mem::offset_of!(timespec, tv_nsec) - 8usize];
-};
-pub type sigset_t = __sigset_t;
-pub type __fd_mask = u32;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct fd_set {
-    pub __fds_bits: [__fd_mask; 2usize],
-}
-#[allow(clippy::unnecessary_operation, clippy::identity_op)]
-const _: () = {
-    ["Size of fd_set"][::core::mem::size_of::<fd_set>() - 8usize];
-    ["Alignment of fd_set"][::core::mem::align_of::<fd_set>() - 4usize];
-    ["Offset of field: fd_set::__fds_bits"][::core::mem::offset_of!(fd_set, __fds_bits) - 0usize];
-};
-pub type off_t = __off_t;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct SJoystickState {
@@ -344,92 +291,81 @@ unsafe extern "C" {
         arg2: *mut *mut ::core::ffi::c_char,
         arg3: ::core::ffi::c_int,
     ) -> uintmax_t;
-    pub fn wcstoimax(
-        arg1: *const wchar_t,
-        arg2: *mut *mut wchar_t,
-        arg3: ::core::ffi::c_int,
-    ) -> intmax_t;
-    pub fn wcstoumax(
-        arg1: *const wchar_t,
-        arg2: *mut *mut wchar_t,
-        arg3: ::core::ffi::c_int,
-    ) -> uintmax_t;
-    pub fn strtoimax_l(
-        arg1: *const ::core::ffi::c_char,
-        _restrict: *mut *mut ::core::ffi::c_char,
-        arg2: ::core::ffi::c_int,
-        arg3: locale_t,
-    ) -> intmax_t;
-    pub fn strtoumax_l(
-        arg1: *const ::core::ffi::c_char,
-        _restrict: *mut *mut ::core::ffi::c_char,
-        arg2: ::core::ffi::c_int,
-        arg3: locale_t,
-    ) -> uintmax_t;
-    pub fn wcstoimax_l(
-        arg1: *const wchar_t,
-        _restrict: *mut *mut wchar_t,
-        arg2: ::core::ffi::c_int,
-        arg3: locale_t,
-    ) -> intmax_t;
-    pub fn wcstoumax_l(
-        arg1: *const wchar_t,
-        _restrict: *mut *mut wchar_t,
-        arg2: ::core::ffi::c_int,
-        arg3: locale_t,
-    ) -> uintmax_t;
+    pub fn wcstoimax(arg1: *const u32, arg2: *mut *mut u32, arg3: ::core::ffi::c_int) -> intmax_t;
+    pub fn wcstoumax(arg1: *const u32, arg2: *mut *mut u32, arg3: ::core::ffi::c_int) -> uintmax_t;
+    #[link_name = "\u{1}_Z17APUAllocateBufferj"]
     pub fn APUAllocateBuffer(_size: u32) -> *mut u8;
+    #[link_name = "\u{1}_Z16APUSetBufferSizej"]
     pub fn APUSetBufferSize(audioBufferSize: u32);
+    #[link_name = "\u{1}_Z11APUStartDMAj"]
     pub fn APUStartDMA(audioBufferAddress16byteAligned: u32);
+    #[link_name = "\u{1}_Z16APUSetSampleRate14EAPUSampleRate"]
     pub fn APUSetSampleRate(sampleRate: EAPUSampleRate);
+    #[link_name = "\u{1}_Z11E32ReadTimev"]
     pub fn E32ReadTime() -> u64;
+    #[link_name = "\u{1}_Z13E32ReadCyclesv"]
     pub fn E32ReadCycles() -> u64;
+    #[link_name = "\u{1}_Z26E32ReadRetiredInstructionsv"]
     pub fn E32ReadRetiredInstructions() -> u64;
+    #[link_name = "\u{1}_Z17E32SetTimeComparey"]
     pub fn E32SetTimeCompare(future: u64);
+    #[link_name = "\u{1}_Z9ClockToMsy"]
     pub fn ClockToMs(clk: u64) -> u32;
+    #[link_name = "\u{1}_Z9ClockToUsy"]
     pub fn ClockToUs(clk: u64) -> u32;
+    #[link_name = "\u{1}_Z12ClockMsToHMSjPjS_S_"]
     pub fn ClockMsToHMS(ms: u32, hours: *mut u32, minutes: *mut u32, seconds: *mut u32);
+    #[link_name = "\u{1}_Z8E32Sleepy"]
     pub fn E32Sleep(ticks: u64);
+    #[link_name = "\u{1}_Z20E32WriteMemMappedCSRjjj"]
     pub fn E32WriteMemMappedCSR(_hart: u32, _csr: u32, _value: u32);
+    #[link_name = "\u{1}_Z19E32ReadMemMappedCSRjj"]
     pub fn E32ReadMemMappedCSR(_hart: u32, _csr: u32) -> u32;
+    #[link_name = "\u{1}_Z11E32SetupCPUjPv"]
     pub fn E32SetupCPU(hartid: u32, workerThread: *mut ::core::ffi::c_void);
+    #[link_name = "\u{1}_Z11E32ResetCPUj"]
     pub fn E32ResetCPU(hartid: u32);
+    #[link_name = "\u{1}_Z13E32ClearResetj"]
     pub fn E32ClearReset(hartid: u32);
+    #[link_name = "\u{1}_Z23E32BeginCriticalSectionv"]
     pub fn E32BeginCriticalSection();
+    #[link_name = "\u{1}_Z21E32EndCriticalSectionv"]
     pub fn E32EndCriticalSection();
+    #[link_name = "\u{1}_Z16E32GetScratchpadv"]
     pub fn E32GetScratchpad() -> u32;
-    pub fn select(
-        __n: ::core::ffi::c_int,
-        __readfds: *mut fd_set,
-        __writefds: *mut fd_set,
-        __exceptfds: *mut fd_set,
-        __timeout: *mut timeval,
-    ) -> ::core::ffi::c_int;
-    pub fn pselect(
-        __n: ::core::ffi::c_int,
-        __readfds: *mut fd_set,
-        __writefds: *mut fd_set,
-        __exceptfds: *mut fd_set,
-        __timeout: *const timespec,
-        __set: *const sigset_t,
-    ) -> ::core::ffi::c_int;
     pub fn getcwd(buf: *mut ::core::ffi::c_char, size: usize) -> *mut ::core::ffi::c_char;
     pub fn chdir(path: *const ::core::ffi::c_char) -> ::core::ffi::c_int;
+    #[link_name = "\u{1}_Z13ReadAxisStatePh"]
     pub fn ReadAxisState(scandata: *mut u8);
+    #[link_name = "\u{1}_Z16ProcessAxisStatePh"]
     pub fn ProcessAxisState(scandata: *mut u8);
+    #[link_name = "\u{1}_Z15ReadButtonStatePh"]
     pub fn ReadButtonState(scandata: *mut u8);
+    #[link_name = "\u{1}_Z18ProcessButtonStatePh"]
     pub fn ProcessButtonState(scandata: *mut u8);
+    #[link_name = "\u{1}_Z19UpdateJoystickStatev"]
     pub fn UpdateJoystickState();
+    #[link_name = "\u{1}_Z16JoystickGetStatev"]
     pub fn JoystickGetState() -> *mut SJoystickState;
+    #[link_name = "\u{1}_Z12ReadKeyStatePh"]
     pub fn ReadKeyState(scandata: *mut u8);
+    #[link_name = "\u{1}_Z15ProcessKeyStatePh"]
     pub fn ProcessKeyState(scandata: *mut u8);
+    #[link_name = "\u{1}_Z19UpdateKeyboardStatePh"]
     pub fn UpdateKeyboardState(scandata: *mut u8);
+    #[link_name = "\u{1}_Z16KeyboardGetStatev"]
     pub fn KeyboardGetState() -> *mut SKeyboardState;
+    #[link_name = "\u{1}_Z23KeyboardScanCodeToASCIIhh"]
     pub fn KeyboardScanCodeToASCII(scanCode: u8, lowercase: u8) -> u8;
+    #[link_name = "\u{1}_Z18KeyRingBufferResetv"]
     pub fn KeyRingBufferReset();
+    #[link_name = "\u{1}_Z17KeyRingBufferReadPvj"]
     pub fn KeyRingBufferRead(pvDest: *mut ::core::ffi::c_void, cbDest: u32) -> u32;
+    #[link_name = "\u{1}_Z18KeyRingBufferWritePKvj"]
     pub fn KeyRingBufferWrite(pvSrc: *const ::core::ffi::c_void, cbSrc: u32) -> u32;
+    #[link_name = "\u{1}_Z11LEDGetStatev"]
     pub fn LEDGetState() -> u32;
+    #[link_name = "\u{1}_Z11LEDSetStatej"]
     pub fn LEDSetState(state: u32);
     pub fn mini_vsnprintf(
         buffer: *mut ::core::ffi::c_char,
@@ -443,33 +379,49 @@ unsafe extern "C" {
         fmt: *const ::core::ffi::c_char,
         ...
     ) -> ::core::ffi::c_int;
+    #[link_name = "\u{1}_Z9c_isspacei"]
     pub fn c_isspace(c: ::core::ffi::c_int) -> ::core::ffi::c_int;
+    #[link_name = "\u{1}_Z9c_isdigiti"]
     pub fn c_isdigit(c: ::core::ffi::c_int) -> ::core::ffi::c_int;
+    #[link_name = "\u{1}_Z8c_sscanfPKcPcz"]
     pub fn c_sscanf(
         buff: *const ::core::ffi::c_char,
         format: *mut ::core::ffi::c_char,
         ...
     ) -> ::core::ffi::c_int;
+    #[link_name = "\u{1}_Z7c_getchv"]
     pub fn c_getch() -> ::core::ffi::c_char;
+    #[link_name = "\u{1}_Z11c_getbackchc"]
     pub fn c_getbackch(b: ::core::ffi::c_char) -> bool;
+    #[link_name = "\u{1}_Z5getchv"]
     pub fn getch() -> ::core::ffi::c_int;
+    #[link_name = "\u{1}_Z13SDCardStartupv"]
     pub fn SDCardStartup() -> ::core::ffi::c_int;
+    #[link_name = "\u{1}_Z11SDIOControlhPv"]
     pub fn SDIOControl(cmd: u8, buffer: *mut ::core::ffi::c_void) -> ::core::ffi::c_int;
+    #[link_name = "\u{1}_Z20SDReadMultipleBlocksPhjj"]
     pub fn SDReadMultipleBlocks(
         datablock: *mut u8,
         numblocks: u32,
         blockaddress: u32,
     ) -> ::core::ffi::c_int;
+    #[link_name = "\u{1}_Z21SDWriteMultipleBlocksPKhjj"]
     pub fn SDWriteMultipleBlocks(
         datablock: *const u8,
         numblocks: u32,
         blockaddress: u32,
     ) -> ::core::ffi::c_int;
+    #[link_name = "\u{1}_Z23SerialInRingBufferResetv"]
     pub fn SerialInRingBufferReset();
+    #[link_name = "\u{1}_Z22SerialInRingBufferReadPvj"]
     pub fn SerialInRingBufferRead(pvDest: *mut ::core::ffi::c_void, cbDest: u32) -> u32;
+    #[link_name = "\u{1}_Z23SerialInRingBufferWritePKvj"]
     pub fn SerialInRingBufferWrite(pvSrc: *const ::core::ffi::c_void, cbSrc: u32) -> u32;
+    #[link_name = "\u{1}_Z14TaskGetContextj"]
     pub fn TaskGetContext(_hartid: u32) -> *mut STaskContext;
+    #[link_name = "\u{1}_Z19TaskGetSharedMemoryv"]
     pub fn TaskGetSharedMemory() -> *mut ::core::ffi::c_void;
+    #[link_name = "\u{1}_Z7TaskAddP12STaskContextPKcPFvvE10ETaskStatejj"]
     pub fn TaskAdd(
         _ctx: *mut STaskContext,
         _name: *const ::core::ffi::c_char,
@@ -478,12 +430,19 @@ unsafe extern "C" {
         _runLength: u32,
         _stackAddress: u32,
     ) -> ::core::ffi::c_int;
+    #[link_name = "\u{1}_Z16TaskSwitchToNextP12STaskContext"]
     pub fn TaskSwitchToNext(_ctx: *mut STaskContext) -> u32;
+    #[link_name = "\u{1}_Z19TaskExitCurrentTaskP12STaskContext"]
     pub fn TaskExitCurrentTask(_ctx: *mut STaskContext);
+    #[link_name = "\u{1}_Z18TaskExitTaskWithIDP12STaskContextjj"]
     pub fn TaskExitTaskWithID(_ctx: *mut STaskContext, _taskid: u32, _signal: u32);
+    #[link_name = "\u{1}_Z9TaskYieldv"]
     pub fn TaskYield();
+    #[link_name = "\u{1}_Z12TaskSetStateP12STaskContextj10ETaskState"]
     pub fn TaskSetState(_ctx: *mut STaskContext, _taskid: u32, _state: ETaskState);
+    #[link_name = "\u{1}_Z12TaskGetStateP12STaskContextj"]
     pub fn TaskGetState(_ctx: *mut STaskContext, _taskid: u32) -> ETaskState;
+    #[link_name = "\u{1}_Z9TaskGetPCP12STaskContextj"]
     pub fn TaskGetPC(_ctx: *mut STaskContext, _taskid: u32) -> u32;
     pub fn atan(arg1: f64) -> f64;
     pub fn cos(arg1: f64) -> f64;
@@ -507,12 +466,6 @@ unsafe extern "C" {
     pub fn pow(arg1: f64, arg2: f64) -> f64;
     pub fn sqrt(arg1: f64) -> f64;
     pub fn fmod(arg1: f64, arg2: f64) -> f64;
-    pub fn finite(arg1: f64) -> ::core::ffi::c_int;
-    pub fn finitef(arg1: f32) -> ::core::ffi::c_int;
-    pub fn isinff(arg1: f32) -> ::core::ffi::c_int;
-    pub fn isnanf(arg1: f32) -> ::core::ffi::c_int;
-    pub fn isinf(arg1: f64) -> ::core::ffi::c_int;
-    pub fn isnan(arg1: f64) -> ::core::ffi::c_int;
     pub fn infinity() -> f64;
     pub fn nan(arg1: *const ::core::ffi::c_char) -> f64;
     pub fn copysign(arg1: f64, arg2: f64) -> f64;
@@ -607,31 +560,8 @@ unsafe extern "C" {
     pub fn erfcf(arg1: f32) -> f32;
     pub fn log2f(arg1: f32) -> f32;
     pub fn hypotf(arg1: f32, arg2: f32) -> f32;
-    pub fn drem(arg1: f64, arg2: f64) -> f64;
-    pub fn dremf(arg1: f32, arg2: f32) -> f32;
-    pub fn gamma_r(arg1: f64, arg2: *mut ::core::ffi::c_int) -> f64;
-    pub fn lgamma_r(arg1: f64, arg2: *mut ::core::ffi::c_int) -> f64;
-    pub fn gammaf_r(arg1: f32, arg2: *mut ::core::ffi::c_int) -> f32;
-    pub fn lgammaf_r(arg1: f32, arg2: *mut ::core::ffi::c_int) -> f32;
-    pub fn y0(arg1: f64) -> f64;
-    pub fn y1(arg1: f64) -> f64;
-    pub fn yn(arg1: ::core::ffi::c_int, arg2: f64) -> f64;
-    pub fn j0(arg1: f64) -> f64;
-    pub fn j1(arg1: f64) -> f64;
-    pub fn jn(arg1: ::core::ffi::c_int, arg2: f64) -> f64;
-    pub fn y0f(arg1: f32) -> f32;
-    pub fn y1f(arg1: f32) -> f32;
-    pub fn ynf(arg1: ::core::ffi::c_int, arg2: f32) -> f32;
-    pub fn j0f(arg1: f32) -> f32;
-    pub fn j1f(arg1: f32) -> f32;
-    pub fn jnf(arg1: ::core::ffi::c_int, arg2: f32) -> f32;
-    pub fn ctermid(arg1: *mut ::core::ffi::c_char) -> *mut ::core::ffi::c_char;
     pub fn tmpfile() -> *mut FILE;
     pub fn tmpnam(arg1: *mut ::core::ffi::c_char) -> *mut ::core::ffi::c_char;
-    pub fn tempnam(
-        arg1: *const ::core::ffi::c_char,
-        arg2: *const ::core::ffi::c_char,
-    ) -> *mut ::core::ffi::c_char;
     pub fn fclose(arg1: *mut FILE) -> ::core::ffi::c_int;
     pub fn fflush(arg1: *mut FILE) -> ::core::ffi::c_int;
     pub fn freopen(
@@ -658,14 +588,13 @@ unsafe extern "C" {
     pub fn vfprintf(
         arg1: *mut FILE,
         arg2: *const ::core::ffi::c_char,
-        arg3: __builtin_va_list,
+        arg3: __gnuc_va_list,
     ) -> ::core::ffi::c_int;
-    pub fn vprintf(arg1: *const ::core::ffi::c_char, arg2: __builtin_va_list)
-    -> ::core::ffi::c_int;
+    pub fn vprintf(arg1: *const ::core::ffi::c_char, arg2: __gnuc_va_list) -> ::core::ffi::c_int;
     pub fn vsprintf(
         arg1: *mut ::core::ffi::c_char,
         arg2: *const ::core::ffi::c_char,
-        arg3: __builtin_va_list,
+        arg3: __gnuc_va_list,
     ) -> ::core::ffi::c_int;
     pub fn fgetc(arg1: *mut FILE) -> ::core::ffi::c_int;
     pub fn fgets(
@@ -682,18 +611,14 @@ unsafe extern "C" {
     pub fn putchar(arg1: ::core::ffi::c_int) -> ::core::ffi::c_int;
     pub fn puts(arg1: *const ::core::ffi::c_char) -> ::core::ffi::c_int;
     pub fn ungetc(arg1: ::core::ffi::c_int, arg2: *mut FILE) -> ::core::ffi::c_int;
-    pub fn fread(
-        arg1: *mut ::core::ffi::c_void,
-        _size: ::core::ffi::c_uint,
-        _n: ::core::ffi::c_uint,
-        arg2: *mut FILE,
-    ) -> ::core::ffi::c_uint;
+    pub fn fread(arg1: *mut ::core::ffi::c_void, _size: usize, _n: usize, arg2: *mut FILE)
+    -> usize;
     pub fn fwrite(
         arg1: *const ::core::ffi::c_void,
-        _size: ::core::ffi::c_uint,
-        _n: ::core::ffi::c_uint,
+        _size: usize,
+        _n: usize,
         arg2: *mut FILE,
-    ) -> ::core::ffi::c_uint;
+    ) -> usize;
     pub fn fgetpos(arg1: *mut FILE, arg2: *mut fpos_t) -> ::core::ffi::c_int;
     pub fn fseek(
         arg1: *mut FILE,
@@ -719,213 +644,55 @@ unsafe extern "C" {
         arg1: *const ::core::ffi::c_char,
         arg2: *const ::core::ffi::c_char,
     ) -> ::core::ffi::c_int;
-    pub fn fseeko(arg1: *mut FILE, arg2: off_t, arg3: ::core::ffi::c_int) -> ::core::ffi::c_int;
-    pub fn ftello(arg1: *mut FILE) -> off_t;
     pub fn vfscanf(
         arg1: *mut FILE,
         arg2: *const ::core::ffi::c_char,
-        arg3: __builtin_va_list,
+        arg3: __gnuc_va_list,
     ) -> ::core::ffi::c_int;
-    pub fn vscanf(arg1: *const ::core::ffi::c_char, arg2: __builtin_va_list) -> ::core::ffi::c_int;
+    pub fn vscanf(arg1: *const ::core::ffi::c_char, arg2: __gnuc_va_list) -> ::core::ffi::c_int;
     pub fn vsscanf(
         arg1: *const ::core::ffi::c_char,
         arg2: *const ::core::ffi::c_char,
-        arg3: __builtin_va_list,
-    ) -> ::core::ffi::c_int;
-    pub fn asiprintf(
-        arg1: *mut *mut ::core::ffi::c_char,
-        arg2: *const ::core::ffi::c_char,
-        ...
-    ) -> ::core::ffi::c_int;
-    pub fn asniprintf(
-        arg1: *mut ::core::ffi::c_char,
-        arg2: *mut usize,
-        arg3: *const ::core::ffi::c_char,
-        ...
-    ) -> *mut ::core::ffi::c_char;
-    pub fn asnprintf(
-        arg1: *mut ::core::ffi::c_char,
-        arg2: *mut usize,
-        arg3: *const ::core::ffi::c_char,
-        ...
-    ) -> *mut ::core::ffi::c_char;
-    pub fn diprintf(
-        arg1: ::core::ffi::c_int,
-        arg2: *const ::core::ffi::c_char,
-        ...
-    ) -> ::core::ffi::c_int;
-    pub fn fiprintf(arg1: *mut FILE, arg2: *const ::core::ffi::c_char, ...) -> ::core::ffi::c_int;
-    pub fn fiscanf(arg1: *mut FILE, arg2: *const ::core::ffi::c_char, ...) -> ::core::ffi::c_int;
-    pub fn iprintf(arg1: *const ::core::ffi::c_char, ...) -> ::core::ffi::c_int;
-    pub fn iscanf(arg1: *const ::core::ffi::c_char, ...) -> ::core::ffi::c_int;
-    pub fn siprintf(
-        arg1: *mut ::core::ffi::c_char,
-        arg2: *const ::core::ffi::c_char,
-        ...
-    ) -> ::core::ffi::c_int;
-    pub fn siscanf(
-        arg1: *const ::core::ffi::c_char,
-        arg2: *const ::core::ffi::c_char,
-        ...
-    ) -> ::core::ffi::c_int;
-    pub fn sniprintf(
-        arg1: *mut ::core::ffi::c_char,
-        arg2: usize,
-        arg3: *const ::core::ffi::c_char,
-        ...
-    ) -> ::core::ffi::c_int;
-    pub fn vasiprintf(
-        arg1: *mut *mut ::core::ffi::c_char,
-        arg2: *const ::core::ffi::c_char,
         arg3: __gnuc_va_list,
-    ) -> ::core::ffi::c_int;
-    pub fn vasniprintf(
-        arg1: *mut ::core::ffi::c_char,
-        arg2: *mut usize,
-        arg3: *const ::core::ffi::c_char,
-        arg4: __gnuc_va_list,
-    ) -> *mut ::core::ffi::c_char;
-    pub fn vasnprintf(
-        arg1: *mut ::core::ffi::c_char,
-        arg2: *mut usize,
-        arg3: *const ::core::ffi::c_char,
-        arg4: __gnuc_va_list,
-    ) -> *mut ::core::ffi::c_char;
-    pub fn vdiprintf(
-        arg1: ::core::ffi::c_int,
-        arg2: *const ::core::ffi::c_char,
-        arg3: __gnuc_va_list,
-    ) -> ::core::ffi::c_int;
-    pub fn vfiprintf(
-        arg1: *mut FILE,
-        arg2: *const ::core::ffi::c_char,
-        arg3: __gnuc_va_list,
-    ) -> ::core::ffi::c_int;
-    pub fn vfiscanf(
-        arg1: *mut FILE,
-        arg2: *const ::core::ffi::c_char,
-        arg3: __gnuc_va_list,
-    ) -> ::core::ffi::c_int;
-    pub fn viprintf(arg1: *const ::core::ffi::c_char, arg2: __gnuc_va_list) -> ::core::ffi::c_int;
-    pub fn viscanf(arg1: *const ::core::ffi::c_char, arg2: __gnuc_va_list) -> ::core::ffi::c_int;
-    pub fn vsiprintf(
-        arg1: *mut ::core::ffi::c_char,
-        arg2: *const ::core::ffi::c_char,
-        arg3: __gnuc_va_list,
-    ) -> ::core::ffi::c_int;
-    pub fn vsiscanf(
-        arg1: *const ::core::ffi::c_char,
-        arg2: *const ::core::ffi::c_char,
-        arg3: __gnuc_va_list,
-    ) -> ::core::ffi::c_int;
-    pub fn vsniprintf(
-        arg1: *mut ::core::ffi::c_char,
-        arg2: usize,
-        arg3: *const ::core::ffi::c_char,
-        arg4: __gnuc_va_list,
-    ) -> ::core::ffi::c_int;
-    pub fn fdopen(arg1: ::core::ffi::c_int, arg2: *const ::core::ffi::c_char) -> *mut FILE;
-    pub fn fileno(arg1: *mut FILE) -> ::core::ffi::c_int;
-    pub fn pclose(arg1: *mut FILE) -> ::core::ffi::c_int;
-    pub fn popen(arg1: *const ::core::ffi::c_char, arg2: *const ::core::ffi::c_char) -> *mut FILE;
-    pub fn setbuffer(arg1: *mut FILE, arg2: *mut ::core::ffi::c_char, arg3: ::core::ffi::c_int);
-    pub fn setlinebuf(arg1: *mut FILE) -> ::core::ffi::c_int;
-    pub fn getw(arg1: *mut FILE) -> ::core::ffi::c_int;
-    pub fn putw(arg1: ::core::ffi::c_int, arg2: *mut FILE) -> ::core::ffi::c_int;
-    pub fn getc_unlocked(arg1: *mut FILE) -> ::core::ffi::c_int;
-    pub fn getchar_unlocked() -> ::core::ffi::c_int;
-    pub fn flockfile(arg1: *mut FILE);
-    pub fn ftrylockfile(arg1: *mut FILE) -> ::core::ffi::c_int;
-    pub fn funlockfile(arg1: *mut FILE);
-    pub fn putc_unlocked(arg1: ::core::ffi::c_int, arg2: *mut FILE) -> ::core::ffi::c_int;
-    pub fn putchar_unlocked(arg1: ::core::ffi::c_int) -> ::core::ffi::c_int;
-    pub fn dprintf(
-        arg1: ::core::ffi::c_int,
-        arg2: *const ::core::ffi::c_char,
-        ...
-    ) -> ::core::ffi::c_int;
-    pub fn fmemopen(
-        arg1: *mut ::core::ffi::c_void,
-        arg2: usize,
-        arg3: *const ::core::ffi::c_char,
-    ) -> *mut FILE;
-    pub fn open_memstream(arg1: *mut *mut ::core::ffi::c_char, arg2: *mut usize) -> *mut FILE;
-    pub fn vdprintf(
-        arg1: ::core::ffi::c_int,
-        arg2: *const ::core::ffi::c_char,
-        arg3: __gnuc_va_list,
-    ) -> ::core::ffi::c_int;
-    pub fn renameat(
-        arg1: ::core::ffi::c_int,
-        arg2: *const ::core::ffi::c_char,
-        arg3: ::core::ffi::c_int,
-        arg4: *const ::core::ffi::c_char,
     ) -> ::core::ffi::c_int;
     pub fn fpurge(arg1: *mut FILE) -> ::core::ffi::c_int;
-    pub fn clearerr_unlocked(arg1: *mut FILE);
-    pub fn feof_unlocked(arg1: *mut FILE) -> ::core::ffi::c_int;
-    pub fn ferror_unlocked(arg1: *mut FILE) -> ::core::ffi::c_int;
-    pub fn fileno_unlocked(arg1: *mut FILE) -> ::core::ffi::c_int;
-    pub fn fflush_unlocked(arg1: *mut FILE) -> ::core::ffi::c_int;
-    pub fn fgetc_unlocked(arg1: *mut FILE) -> ::core::ffi::c_int;
-    pub fn fputc_unlocked(arg1: ::core::ffi::c_int, arg2: *mut FILE) -> ::core::ffi::c_int;
-    pub fn fread_unlocked(
-        arg1: *mut ::core::ffi::c_void,
-        _size: usize,
-        _n: usize,
-        arg2: *mut FILE,
-    ) -> usize;
-    pub fn fwrite_unlocked(
-        arg1: *const ::core::ffi::c_void,
-        _size: usize,
-        _n: usize,
-        arg2: *mut FILE,
-    ) -> usize;
-    pub fn funopen(
-        __cookie: *const ::core::ffi::c_void,
-        __readfn: ::core::option::Option<
-            unsafe extern "C" fn(
-                __cookie: *mut ::core::ffi::c_void,
-                __buf: *mut ::core::ffi::c_char,
-                __n: ::core::ffi::c_int,
-            ) -> ::core::ffi::c_int,
-        >,
-        __writefn: ::core::option::Option<
-            unsafe extern "C" fn(
-                __cookie: *mut ::core::ffi::c_void,
-                __buf: *const ::core::ffi::c_char,
-                __n: ::core::ffi::c_int,
-            ) -> ::core::ffi::c_int,
-        >,
-        __seekfn: ::core::option::Option<
-            unsafe extern "C" fn(
-                __cookie: *mut ::core::ffi::c_void,
-                __off: fpos_t,
-                __whence: ::core::ffi::c_int,
-            ) -> fpos_t,
-        >,
-        __closefn: ::core::option::Option<
-            unsafe extern "C" fn(__cookie: *mut ::core::ffi::c_void) -> ::core::ffi::c_int,
-        >,
-    ) -> *mut FILE;
+    #[link_name = "\u{1}_Z21UARTInterceptSetStatei"]
     pub fn UARTInterceptSetState(state: ::core::ffi::c_int);
+    #[link_name = "\u{1}_Z13UARTGetStatusv"]
     pub fn UARTGetStatus() -> u32;
+    #[link_name = "\u{1}_Z14UARTSetControlj"]
     pub fn UARTSetControl(ctl: u32);
+    #[link_name = "\u{1}_Z15UARTReceiveDatav"]
     pub fn UARTReceiveData() -> u32;
+    #[link_name = "\u{1}_Z12UARTSendByteh"]
     pub fn UARTSendByte(data: u8);
+    #[link_name = "\u{1}_Z13UARTSendBlockPhj"]
     pub fn UARTSendBlock(data: *mut u8, numBytes: u32);
+    #[link_name = "\u{1}_Z10UARTPrintfPKcz"]
     pub fn UARTPrintf(fmt: *const ::core::ffi::c_char, ...) -> ::core::ffi::c_int;
+    #[link_name = "\u{1}_Z17VPUAllocateBufferj"]
     pub fn VPUAllocateBuffer(_size: u32) -> *mut u8;
+    #[link_name = "\u{1}_Z16VPUGetDimensions10EVideoModePjS0_"]
     pub fn VPUGetDimensions(_mode: EVideoMode, _width: *mut u32, _height: *mut u32);
+    #[link_name = "\u{1}_Z20VPUSetDefaultPaletteP13EVideoContext"]
     pub fn VPUSetDefaultPalette(_context: *mut EVideoContext);
+    #[link_name = "\u{1}_Z11VPUSetVModeP13EVideoContext19EVideoScanoutEnable"]
     pub fn VPUSetVMode(_context: *mut EVideoContext, _scanEnable: EVideoScanoutEnable);
+    #[link_name = "\u{1}_Z20VPUSetScanoutAddressP13EVideoContextj"]
     pub fn VPUSetScanoutAddress(_context: *mut EVideoContext, _scanOutAddress64ByteAligned: u32);
+    #[link_name = "\u{1}_Z18VPUSetWriteAddressP13EVideoContextj"]
     pub fn VPUSetWriteAddress(_context: *mut EVideoContext, _cpuWriteAddress64ByteAligned: u32);
+    #[link_name = "\u{1}_Z9VPUSetPalhjjj"]
     pub fn VPUSetPal(_paletteIndex: u8, _red: u32, _green: u32, _blue: u32);
+    #[link_name = "\u{1}_Z20VPUReadVBlankCounterv"]
     pub fn VPUReadVBlankCounter() -> u32;
+    #[link_name = "\u{1}_Z14VPUGetScanlinev"]
     pub fn VPUGetScanline() -> u32;
+    #[link_name = "\u{1}_Z12VPUSwapPagesP13EVideoContextP17EVideoSwapContext"]
     pub fn VPUSwapPages(_vx: *mut EVideoContext, _sc: *mut EVideoSwapContext);
+    #[link_name = "\u{1}_Z12VPUWaitVSyncv"]
     pub fn VPUWaitVSync();
+    #[link_name = "\u{1}_Z14VPUPrintStringP13EVideoContexthhttPKci"]
     pub fn VPUPrintString(
         _context: *mut EVideoContext,
         _foregroundIndex: u8,
@@ -935,26 +702,37 @@ unsafe extern "C" {
         _message: *const ::core::ffi::c_char,
         _length: ::core::ffi::c_int,
     );
+    #[link_name = "\u{1}_Z19VPUConsoleSetColorsP13EVideoContexthh"]
     pub fn VPUConsoleSetColors(
         _context: *mut EVideoContext,
         _foregroundIndex: u8,
         _backgroundIndex: u8,
     );
+    #[link_name = "\u{1}_Z15VPUConsoleClearP13EVideoContext"]
     pub fn VPUConsoleClear(_context: *mut EVideoContext);
+    #[link_name = "\u{1}_Z19VPUConsoleSetCursorP13EVideoContexttt"]
     pub fn VPUConsoleSetCursor(_context: *mut EVideoContext, _x: u16, _y: u16);
+    #[link_name = "\u{1}_Z15VPUConsolePrintP13EVideoContextPKci"]
     pub fn VPUConsolePrint(
         _context: *mut EVideoContext,
         _message: *const ::core::ffi::c_char,
         _length: ::core::ffi::c_int,
     );
+    #[link_name = "\u{1}_Z17VPUConsoleResolveP13EVideoContext"]
     pub fn VPUConsoleResolve(_context: *mut EVideoContext);
+    #[link_name = "\u{1}_Z18VPUConsoleSetCaretP13EVideoContextttt"]
     pub fn VPUConsoleSetCaret(_context: *mut EVideoContext, _x: u16, _y: u16, _blink: u16);
+    #[link_name = "\u{1}_Z19VPUConsoleClearLineP13EVideoContextt"]
     pub fn VPUConsoleClearLine(_context: *mut EVideoContext, _y: u16);
+    #[link_name = "\u{1}_Z18VPUConsoleFillLineP13EVideoContextc"]
     pub fn VPUConsoleFillLine(
         _context: *mut EVideoContext,
         _character: ::core::ffi::c_char,
     ) -> ::core::ffi::c_int;
+    #[link_name = "\u{1}_Z18VPUConsoleScrollUpP13EVideoContext"]
     pub fn VPUConsoleScrollUp(_context: *mut EVideoContext);
+    #[link_name = "\u{1}_Z8VPUClearP13EVideoContextj"]
     pub fn VPUClear(_context: *mut EVideoContext, _colorWord: u32);
+    #[link_name = "\u{1}_Z22VPUGetKernelGfxContextv"]
     pub fn VPUGetKernelGfxContext() -> *mut EVideoContext;
 }
