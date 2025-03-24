@@ -64,6 +64,7 @@ fn do_bindgen() {
         // items needed by a function definition. This eliminates >80% of
         // the symbols typically found.
         .allowlist_function(".*")
+        .allowlist_item("[A-Z]+[A-Z_]+")
         // _ names are usually special and not part of the SDK we want
         .opaque_type("_.*")
         .blocklist_function("_.*")
