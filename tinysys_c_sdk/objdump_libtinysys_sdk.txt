@@ -1,4 +1,4 @@
-In archive /Users/c/code/tinysys/tinysys-sys/tinysys_c_sdk/libtinysys_sdk.a:
+In archive libtinysys_sdk.a:
 
 apu.o:     file format elf32-littleriscv
 

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+pushd "$(dirname "$0")"/.. > /dev/null
+
 function do_loudly() {
     echo "+ $*"
     $*
@@ -22,11 +24,12 @@ if [ ! -d "$REPO" ]; then
     do_loudly git sparse-checkout set software/SDK/
     do_loudly git checkout
 else
-    echo "[~] Found $REPO, attempting to update"
+    echo "[~] Found $(realpath $REPO), attempting to update"
     pushd $REPO > /dev/null
     do_loudly git pull
 fi
 
+git show --summary | head -n 15
 echo $(git rev-parse HEAD)      > $OUTDIR/git-HEAD.txt
 echo                           >> $OUTDIR/git-HEAD.txt
 echo $(git log --oneline HEAD) >> $OUTDIR/git-HEAD.txt
