@@ -8,11 +8,14 @@ This crate exposes the raw C bindings of the [tinysys SDK](https://github.com/ec
 
 This crate does **not** expose idiomatic Rust bindings, nor does it take opinions on how to use anything. This is the `-sys` style, straight C bindings.
 
+### Building the crate
+This crate builds with a single `cargo build`. 
+
+We set the default target-triple in `.cargo/config.toml` so it works for `tinysys` out of the box.
+
 ## TODOs
 
 This crate is WIP. Here's a list of TODOs I'm working on in no particular order.
-- [ ] Compile the C code and link it in, instead of meerly providing symbols
-    - We could check-in a static lib and make this manual, like we do the bindgen'd headers
 - [ ] Idiomatic Rust traits etc
     - We should provide impls for utiltiy traits like those from `bytemuck` on the raw C types.
     - Due to the Orphan Rule, this crate **must** provide them. Unlike idiomatic wrappers, clients cannot provide these.
@@ -31,11 +34,13 @@ The code is layed out like so:
 - `src/lib.rs`
     - Defines the crate library and re-exports symbols from the generated `sdk.rs`.
     - May add any additional utility macros, functions, traits, etc. that may be useful.
+- `tinysys_c_sdk/`
+    - artifacts and build scripts from this crate for the SDK.
 - `tinysys_c_sdk/SDK`
     - The `SDK` folder verbatim from the [`tinysys` repo](https://github.com/ecilasun/tinysys).
 
 ## Updating the SDK+Bindings
-To update everything, you need to install a RISCV toolchain and run the update scripts.
+To update everything, you need to install a RISCV toolchain, update the SDK, and build the C/++ code. The SDK can be updated, built, or bindings regenerated independently of eachother.
 
 ### Installing riscv-tools
 Install the Rust target with rustup:
@@ -45,27 +50,36 @@ rustup target add riscv32imac-unknown-none-elf
 ```
 
 #### Windows, Linux
-TODO. I'm not sure how to install riscv-tools on these platforms yet. Running bindgen on them may require you to modify `./update_rs.sh` to get the options right.
+TODO. I'm not sure how to install riscv-tools on these platforms yet.
+Initial impressions suggest Windows users should try installing and running riscv-tools from WSL.
 
 #### macOS
 Install `riscv-tools` using homebrew, as detailed [here](https://github.com/riscv-software-src/homebrew-riscv?tab=readme-ov-file#installation).
+Also install LLVM. We currently use homebrew LLVM for compiling the SDK due to an issue where `bindgen`(clang) and `riscv-tools` disagree on whether `uint32_t` is an `unsigned int` or an `unsigned long`. This breaks our bindings, but a Clang build with a riscv backend resolves it. Apple Clang does not ship with a riscv backend.
+
 ```sh
 brew tap riscv-software-src/riscv
-brew install riscv-tools
+brew install riscv-tools llvm
 ```
 
-### Downloading the C SDK and running `bindgen`
-With that installed, make sure it's findable in the path and run the update scripts:
+### Downloading the C SDK
+With that installed, make sure it's findable in the path and run the update script:
 ```sh
-riscv64-unknown-elf-gcc --version
-./update_c_sdk.sh
-./update_rs.sh
+./tinysys_c_sdk/update_sdk.sh 
+```
+This downloads the latest SDK files from the `tinysys` repo and copies it in into `tinysys_c_sdk/SDK`.
+
+### Rebuilding
+To rebuild `libtinysys_sdk.a`, run the following:
+```sh
+make -C tinysys_c_sdk build
 ```
 
-Running `./update_c_sdk.sh` downloads the latest SDK files from the `tinysys` repo and copies it in into `tinysys_c_sdk/SDK`.
-Running `./update_rs.sh` generates `src/include/sdk.h` from the previously-downloaded SDK and runs `bindgen`. Currently it pulls riscv headers using `riscv64-unknown-elf-gcc -print-sysroot` but I'm not sure how cross-platform friendly this is.
+### Running `bindgen`
+Then run bindgen to update the bindings.
+```sh
+make -C tinysys_c_sdk sdk.rs
+```
+This generates `src/include/sdk.h` and `src/sdk.rs` from the previously-downloaded SDK and runs `bindgen`. Currently it pulls riscv headers using `riscv64-unknown-elf-gcc -print-sysroot`.
 
-If you're only changing the bindgen options, you do not need to rerun `./update_c_sdk.sh`.
-
-### Building
-This crate builds with a single `cargo build`. We set the default target-triple in `.cargo/config.toml` so it works for tinysys out of the box.
+If you're only changing the bindgen options, you do not need to rerun `./tinysys_c_sdk/update_sdk.sh`.
