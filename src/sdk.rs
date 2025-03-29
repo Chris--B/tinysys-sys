@@ -29,6 +29,10 @@ pub const ONE_MICROSECOND_IN_TICKS: u32 = 10;
 pub const CSR_CPURESET: u32 = 4078;
 pub const CSR_WATERMARK: u32 = 4080;
 pub const CSR_PROGRAMCOUNTER: u32 = 4092;
+pub const CSR_HEAPSTART: u32 = 2304;
+pub const CSR_HEAPEND: u32 = 2305;
+pub const CSR_BRKPOS: u32 = 2306;
+pub const CSR_BRKLOCK: u32 = 2307;
 pub const APPMEM_START: u32 = 0;
 pub const HEAP_START: u32 = 4096;
 pub const HEAP_END: u32 = 251658240;
@@ -1732,11 +1736,11 @@ pub struct STask {
     pub state: ETaskState,
     pub exitCode: u32,
     pub regs: [u32; 32usize],
-    pub name: [::core::ffi::c_char; 16usize],
+    pub name: u32,
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of STask"][::core::mem::size_of::<STask>() - 160usize];
+    ["Size of STask"][::core::mem::size_of::<STask>() - 148usize];
     ["Alignment of STask"][::core::mem::align_of::<STask>() - 4usize];
     ["Offset of field: STask::HART"][::core::mem::offset_of!(STask, HART) - 0usize];
     ["Offset of field: STask::runLength"][::core::mem::offset_of!(STask, runLength) - 4usize];
@@ -1757,19 +1761,19 @@ pub struct STaskContext {
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of STaskContext"][::core::mem::size_of::<STaskContext>() - 668usize];
+    ["Size of STaskContext"][::core::mem::size_of::<STaskContext>() - 620usize];
     ["Alignment of STaskContext"][::core::mem::align_of::<STaskContext>() - 4usize];
     ["Offset of field: STaskContext::tasks"][::core::mem::offset_of!(STaskContext, tasks) - 0usize];
     ["Offset of field: STaskContext::currentTask"]
-        [::core::mem::offset_of!(STaskContext, currentTask) - 640usize];
+        [::core::mem::offset_of!(STaskContext, currentTask) - 592usize];
     ["Offset of field: STaskContext::numTasks"]
-        [::core::mem::offset_of!(STaskContext, numTasks) - 644usize];
+        [::core::mem::offset_of!(STaskContext, numTasks) - 596usize];
     ["Offset of field: STaskContext::kernelError"]
-        [::core::mem::offset_of!(STaskContext, kernelError) - 648usize];
+        [::core::mem::offset_of!(STaskContext, kernelError) - 600usize];
     ["Offset of field: STaskContext::kernelErrorData"]
-        [::core::mem::offset_of!(STaskContext, kernelErrorData) - 652usize];
+        [::core::mem::offset_of!(STaskContext, kernelErrorData) - 604usize];
     ["Offset of field: STaskContext::hartID"]
-        [::core::mem::offset_of!(STaskContext, hartID) - 664usize];
+        [::core::mem::offset_of!(STaskContext, hartID) - 616usize];
 };
 pub type __FILE = __BindgenOpaqueArray<u32, 26usize>;
 #[repr(C)]

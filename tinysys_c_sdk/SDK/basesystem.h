@@ -21,6 +21,12 @@
 #define CSR_WATERMARK					0xFF0
 #define CSR_PROGRAMCOUNTER				0xFFC
 
+// Registers for heap management
+#define CSR_HEAPSTART					0x900
+#define CSR_HEAPEND						0x901
+#define CSR_BRKPOS						0x902
+#define CSR_BRKLOCK						0x903
+
 // Physical address map for no-MMU raw mode at boot time
 #define APPMEM_START					0x00000000 // Top of RAM
 #define HEAP_START						0x00001000 // Application heap starts here

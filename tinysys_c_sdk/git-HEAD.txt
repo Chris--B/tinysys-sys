@@ -1,3 +1,3 @@
-75e148fbee400df16bc6cbf1ab531c6b19e73aa4
+63bfd6b075f10f9f22d25c0c27597d2f4747f706
 
-75e148f Task stacks bumped to 16K Fixed gettimeofday syscall Fixed missing register from FPGA reset Updated ROM + gateware
+63bfd6b Build fix
