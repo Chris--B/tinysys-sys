@@ -1,7 +1,7 @@
 [target.riscv32im-unknown-none-elf]
 # runner = "riscv64-unknown-elf-gdb -q -x gdb_init"
 rustflags = [
-    "-C", "target-feature=+zicsr,+zifencei,+zfinx",
+    # "-C", "target-feature=+zicsr,+zifencei,+zfinx",
 ]
 
 [build]
