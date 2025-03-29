@@ -141,6 +141,7 @@ fn generate_sdk_rs(rs_out: impl AsRef<Path>) {
             // TODO:
             // format!("--sysroot={riscv_toolchain}"),
         ])
+        // ## Which things we generate bindings for
         // This accepts all functions, but now bindgen will only consider
         // items needed by a function definition. This eliminates >80% of
         // the symbols typically found.
@@ -152,7 +153,15 @@ fn generate_sdk_rs(rs_out: impl AsRef<Path>) {
         .opaque_type("_.*")
         .blocklist_function("_.*")
         .blocklist_function(blocklist_c_funcs_regex)
+        // ## How we generate bindings for the above things
+        .derive_copy(true)
+        .derive_debug(true)
+        .derive_default(true)
+        .derive_eq(true)
+        .derive_hash(true)
+        .derive_partialeq(true)
         .merge_extern_blocks(true)
+        // # And go!
         .generate()
         // Note: If you're seeing this crash, make sure you're using update_rs.sh or otherwise telling bindgen uses your cross compiler.
         // It doesn't by default and likes to crash in **host** C headers with nonsense like:

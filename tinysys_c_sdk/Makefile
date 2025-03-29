@@ -69,7 +69,7 @@ objdump_%.txt: %.a
 	riscv64-unknown-elf-objdump -tC $< > $@
 
 # TODO: Move this out of build.rs into a dedicated script
-sdk.rs: $(SDK_HDRS)
+sdk.rs: $(SDK_HDRS) ../build.rs
 	BINDGEN_EXTRA_CLANG_ARGS="--sysroot=$(RISCV_SYSROOT)" cargo build --features=bindgen $*
 	cargo fmt
 	git diff -- ../src/sdk.rs | diffstat -Cm || true

@@ -1658,7 +1658,7 @@ pub type __uintmax_t = u64;
 pub type intmax_t = __intmax_t;
 pub type uintmax_t = __uintmax_t;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialEq, Eq)]
 pub struct imaxdiv_t {
     pub quot: intmax_t,
     pub rem: intmax_t,
@@ -1678,7 +1678,7 @@ pub type EAPUSampleRate = ::core::ffi::c_uint;
 pub type _off_t = u32;
 pub type _fpos_t = u32;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, PartialEq)]
 pub struct SJoystickState {
     pub count: u32,
     pub axis: [f32; 6usize],
@@ -1696,7 +1696,7 @@ const _: () = {
         [::core::mem::offset_of!(SJoystickState, buttons) - 28usize];
 };
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialEq, Eq)]
 pub struct SKeyboardState {
     pub count: u32,
     pub scancode: u32,
@@ -1729,7 +1729,7 @@ pub const ETaskState_TS_TERMINATING: ETaskState = 3;
 pub const ETaskState_TS_TERMINATED: ETaskState = 4;
 pub type ETaskState = ::core::ffi::c_uint;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub struct STask {
     pub HART: u32,
     pub runLength: u32,
@@ -1749,8 +1749,17 @@ const _: () = {
     ["Offset of field: STask::regs"][::core::mem::offset_of!(STask, regs) - 16usize];
     ["Offset of field: STask::name"][::core::mem::offset_of!(STask, name) - 144usize];
 };
+impl Default for STask {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub struct STaskContext {
     pub tasks: [STask; 4usize],
     pub currentTask: i32,
@@ -1775,10 +1784,19 @@ const _: () = {
     ["Offset of field: STaskContext::hartID"]
         [::core::mem::offset_of!(STaskContext, hartID) - 616usize];
 };
+impl Default for STaskContext {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type __FILE = __BindgenOpaqueArray<u32, 26usize>;
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialEq, Eq)]
 pub struct _glue {
     pub _bindgen_opaque_blob: [u32; 3usize],
 }
@@ -1800,7 +1818,7 @@ pub union _reent__bindgen_ty_1 {
 }
 #[repr(C)]
 #[repr(align(8))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialEq, Eq)]
 pub struct _reent__bindgen_ty_1__bindgen_ty_1 {
     pub _bindgen_opaque_blob: [u64; 25usize],
 }
@@ -1816,11 +1834,29 @@ const _: () = {
     ["Size of _reent__bindgen_ty_1"][::core::mem::size_of::<_reent__bindgen_ty_1>() - 200usize];
     ["Alignment of _reent__bindgen_ty_1"][::core::mem::align_of::<_reent__bindgen_ty_1>() - 8usize];
 };
+impl Default for _reent__bindgen_ty_1 {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
     ["Size of _reent"][::core::mem::size_of::<_reent>() - 288usize];
     ["Alignment of _reent"][::core::mem::align_of::<_reent>() - 8usize];
 };
+impl Default for _reent {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type FILE = __FILE;
 pub type fpos_t = _fpos_t;
 pub const EVideoMode_EVM_320_Wide: EVideoMode = 0;
@@ -1836,7 +1872,7 @@ pub const EVideoScanoutEnable_EVS_Enable: EVideoScanoutEnable = 1;
 pub const EVideoScanoutEnable_EVS_Count: EVideoScanoutEnable = 2;
 pub type EVideoScanoutEnable = ::core::ffi::c_uint;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub struct EVideoContext {
     pub m_vmode: EVideoMode,
     pub m_cmode: EColorMode,
@@ -1895,8 +1931,17 @@ const _: () = {
     ["Offset of field: EVideoContext::m_caretBlink"]
         [::core::mem::offset_of!(EVideoContext, m_caretBlink) - 47usize];
 };
+impl Default for EVideoContext {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 pub struct EVideoSwapContext {
     pub cycle: u32,
     pub readpage: *mut u8,
@@ -1919,6 +1964,15 @@ const _: () = {
     ["Offset of field: EVideoSwapContext::framebufferB"]
         [::core::mem::offset_of!(EVideoSwapContext, framebufferB) - 16usize];
 };
+impl Default for EVideoSwapContext {
+    fn default() -> Self {
+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
 pub type __builtin_va_list = u32;
 unsafe extern "C" {
     pub fn imaxabs(arg1: intmax_t) -> intmax_t;
