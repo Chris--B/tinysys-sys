@@ -3,13 +3,12 @@
 macro_rules! dbg {
     () => {
         {
-            let loc: &str = concat!("[", file!(), ":", line!(), ":", column!(), "] \0");
+            let loc: &str = concat!("[", file!(), ":", line!(), ":", column!(), "]\n");
 
-            // Note: UARTPrintf() expects a C String, which means "\0" terminated
             // This function is unsafe, but this warning fires on nested unsafe blocks.
             #[allow(unused_unsafe)]
             unsafe {
-                UARTPrintf(c"%s\n".as_ptr(), loc.as_bytes().as_ptr());
+                UARTSendBlock(loc.as_bytes().as_ptr() as *mut u8, loc.len() as u32);
             }
         }
     };
@@ -20,14 +19,12 @@ macro_rules! dbg {
 
             let val = $val;
             let val_str: &str = stringify!($val);
-            let formatted: ::alloc::string::String = ::alloc::format!("{loc} {val_str} = {val:#?}\0",);
-            let formatted: ::alloc::vec::Vec<u8> = formatted.into();
+            let formatted: ::alloc::string::String = ::alloc::format!("{loc} {val_str} = {val:#?}\n",);
 
-            // Note: UARTPrintf() expects a C String, which means "\0" terminated
             // This function is unsafe, but this warning fires on nested unsafe blocks.
             #[allow(unused_unsafe)]
             unsafe {
-                UARTPrintf(c"%s\n".as_ptr(), formatted.as_ptr());
+                UARTSendBlock(formatted.as_bytes().as_ptr() as *mut u8, formatted.len() as u32);
             }
 
             val
@@ -47,13 +44,12 @@ macro_rules! dbg {
                     formatted.push_str(&next);
                 }
             )+
-            formatted.push_str("\n\0");
+            formatted.push_str("\n");
 
-            // Note: UARTPrintf() expects a C String, which means "\0" terminated
             // This function is unsafe, but this warning fires on nested unsafe blocks.
             #[allow(unused_unsafe)]
             unsafe {
-                UARTPrintf(c"%s\n".as_ptr(), formatted.as_ptr());
+                UARTSendBlock(formatted.as_bytes().as_ptr() as *mut u8, formatted.len() as u32);
             }
 
             // "Return" the expression list as a tuple
