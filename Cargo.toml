@@ -5,9 +5,11 @@ edition = "2024"
 rust-version = "1.85"
 
 [features]
-default = []
+default = ["alloc", "malloc_free"]
+malloc_free = ["alloc"]
+alloc = []
+# This is only used for running bindgen from the build.rs
 bindgen = ["dep:walkdir", "dep:bindgen"]
-std = []
 
 [dependencies]
 
