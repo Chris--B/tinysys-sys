@@ -34,9 +34,9 @@ The code is layed out like so:
 - `src/lib.rs`
     - Defines the crate library and re-exports symbols from the generated `sdk.rs`.
     - May add any additional utility macros, functions, traits, etc. that may be useful.
-- `tinysys_c_sdk/`
+- `c_sdk/`
     - artifacts and build scripts from this crate for the SDK.
-- `tinysys_c_sdk/SDK`
+- `c_sdk/SDK`
     - The `SDK` folder verbatim from the [`tinysys` repo](https://github.com/ecilasun/tinysys).
 
 ## Updating the SDK+Bindings
@@ -65,21 +65,21 @@ brew install riscv-tools llvm
 ### Downloading the C SDK
 With that installed, make sure it's findable in the path and run the update script:
 ```sh
-./tinysys_c_sdk/update_sdk.sh 
+./c_sdk/update_sdk.sh 
 ```
-This downloads the latest SDK files from the `tinysys` repo and copies it in into `tinysys_c_sdk/SDK`.
+This downloads the latest SDK files from the `tinysys` repo and copies it in into `c_sdk/SDK`.
 
 ### Rebuilding
 To rebuild `libtinysys_sdk.a`, run the following:
 ```sh
-make -C tinysys_c_sdk build
+make -C c_sdk build
 ```
 
 ### Running `bindgen`
 Then run bindgen to update the bindings.
 ```sh
-make -C tinysys_c_sdk sdk.rs
+make -C c_sdk sdk.rs
 ```
 This generates `src/include/sdk.h` and `src/sdk.rs` from the previously-downloaded SDK and runs `bindgen`. Currently it pulls riscv headers using `riscv64-unknown-elf-gcc -print-sysroot`.
 
-If you're only changing the bindgen options, you do not need to rerun `./tinysys_c_sdk/update_sdk.sh`.
+If you're only changing the bindgen options, you do not need to rerun `./c_sdk/update_sdk.sh`.

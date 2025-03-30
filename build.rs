@@ -11,7 +11,7 @@ fn main() {
     generate_sdk_rs("src/sdk.rs");
 
     if env::var("CARGO_CFG_TARGET_ARCH").unwrap() == "riscv32" {
-        use_native_lib("tinysys_c_sdk", "tinysys_sdk");
+        use_native_lib("c_sdk", "tinysys_sdk");
     }
 }
 
@@ -74,7 +74,7 @@ fn generate_sdk_rs(rs_out: impl AsRef<Path>) {
     // Find .h and .c files, we'll need to track them for changes.
     let mut headers = vec![];
     let mut sources = vec![];
-    for entry in WalkDir::new("tinysys_c_sdk/SDK") {
+    for entry in WalkDir::new("c_sdk/SDK") {
         let entry: DirEntry = match entry {
             Ok(entry) => entry,
             Err(err) => {
@@ -88,15 +88,15 @@ fn generate_sdk_rs(rs_out: impl AsRef<Path>) {
         }
 
         let name = entry.path().as_os_str();
-        let name = name.to_string_lossy();
-        let name = name.trim_start_matches("tinysys_c_sdk/SDK/").to_string();
+        let name = name.to_string_lossy().to_string();
+        let short_name = name.trim_start_matches("c_sdk/SDK/").to_string();
 
         if name.ends_with(".h") {
             cargo_rerun_if(&name);
-            headers.push(name);
+            headers.push(short_name);
         } else if name.ends_with(".c") {
             cargo_rerun_if(&name);
-            sources.push(name);
+            sources.push(short_name);
         } else {
             eprintln!("Ignoring {}", entry.path().display());
         }
@@ -131,7 +131,7 @@ fn generate_sdk_rs(rs_out: impl AsRef<Path>) {
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
         .use_core()
         .formatter(bindgen::Formatter::Rustfmt)
-        .clang_args(["-I", "tinysys_c_sdk/SDK"])
+        .clang_args(["-I", "c_sdk/SDK"])
         .clang_args(["-x", "c++"])
         // NOTE: Keep these in sync with the flags in ./scripts/02-build_c_sdk.sh
         .clang_args([

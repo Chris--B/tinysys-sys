@@ -12,8 +12,8 @@ function do_loudly() {
 
 set -e
 
-mkdir -pv tinysys_c_sdk
-OUTDIR=$(realpath tinysys_c_sdk)
+mkdir -pv c_sdk
+OUTDIR=$(realpath c_sdk)
 
 REPO=target/tinysys_repo
 if [ ! -d "$REPO" ]; then
