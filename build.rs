@@ -154,6 +154,7 @@ fn generate_sdk_rs(rs_out: impl AsRef<Path>) {
         // _ names are usually special and not part of the SDK we want
         .opaque_type("_.*")
         .blocklist_function("_.*")
+        .blocklist_function("[a-z]+")
         .blocklist_function(blocklist_c_funcs_regex)
         // ## How we generate bindings for the above things
         .derive_copy(true)

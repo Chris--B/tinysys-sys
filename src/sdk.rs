@@ -1975,20 +1975,6 @@ impl Default for EVideoSwapContext {
 }
 pub type __builtin_va_list = u32;
 unsafe extern "C" {
-    pub fn imaxabs(arg1: intmax_t) -> intmax_t;
-    pub fn imaxdiv(__numer: intmax_t, __denomer: intmax_t) -> imaxdiv_t;
-    pub fn strtoimax(
-        arg1: *const ::core::ffi::c_char,
-        arg2: *mut *mut ::core::ffi::c_char,
-        arg3: ::core::ffi::c_int,
-    ) -> intmax_t;
-    pub fn strtoumax(
-        arg1: *const ::core::ffi::c_char,
-        arg2: *mut *mut ::core::ffi::c_char,
-        arg3: ::core::ffi::c_int,
-    ) -> uintmax_t;
-    pub fn wcstoimax(arg1: *const u32, arg2: *mut *mut u32, arg3: ::core::ffi::c_int) -> intmax_t;
-    pub fn wcstoumax(arg1: *const u32, arg2: *mut *mut u32, arg3: ::core::ffi::c_int) -> uintmax_t;
     pub static mut IO_AUDIOOUT: *mut u32;
     #[link_name = "\u{1}_Z17APUAllocateBufferj"]
     pub fn APUAllocateBuffer(_size: u32) -> *mut u8;
@@ -2030,8 +2016,6 @@ unsafe extern "C" {
     pub fn E32EndCriticalSection();
     #[link_name = "\u{1}_Z16E32GetScratchpadv"]
     pub fn E32GetScratchpad() -> u32;
-    pub fn getcwd(buf: *mut ::core::ffi::c_char, size: usize) -> *mut ::core::ffi::c_char;
-    pub fn chdir(path: *const ::core::ffi::c_char) -> ::core::ffi::c_int;
     #[link_name = "\u{1}_Z13ReadAxisStatePh"]
     pub fn ReadAxisState(scandata: *mut u8);
     #[link_name = "\u{1}_Z16ProcessAxisStatePh"]
@@ -2091,8 +2075,6 @@ unsafe extern "C" {
     pub fn c_getch() -> ::core::ffi::c_char;
     #[link_name = "\u{1}_Z11c_getbackchc"]
     pub fn c_getbackch(b: ::core::ffi::c_char) -> bool;
-    #[link_name = "\u{1}_Z5getchv"]
-    pub fn getch() -> ::core::ffi::c_int;
     pub static mut IO_SPIRXTX: *mut u8;
     pub static mut IO_CARDDETECT: *mut u8;
     #[link_name = "\u{1}_Z13SDCardStartupv"]
@@ -2144,218 +2126,18 @@ unsafe extern "C" {
     pub fn TaskGetState(_ctx: *mut STaskContext, _taskid: u32) -> ETaskState;
     #[link_name = "\u{1}_Z9TaskGetPCP12STaskContextj"]
     pub fn TaskGetPC(_ctx: *mut STaskContext, _taskid: u32) -> u32;
-    pub fn atan(arg1: f64) -> f64;
-    pub fn cos(arg1: f64) -> f64;
-    pub fn sin(arg1: f64) -> f64;
-    pub fn tan(arg1: f64) -> f64;
-    pub fn tanh(arg1: f64) -> f64;
-    pub fn frexp(arg1: f64, arg2: *mut ::core::ffi::c_int) -> f64;
-    pub fn modf(arg1: f64, arg2: *mut f64) -> f64;
-    pub fn ceil(arg1: f64) -> f64;
-    pub fn fabs(arg1: f64) -> f64;
-    pub fn floor(arg1: f64) -> f64;
-    pub fn acos(arg1: f64) -> f64;
-    pub fn asin(arg1: f64) -> f64;
     pub fn atan2(arg1: f64, arg2: f64) -> f64;
-    pub fn cosh(arg1: f64) -> f64;
-    pub fn sinh(arg1: f64) -> f64;
-    pub fn exp(arg1: f64) -> f64;
-    pub fn ldexp(arg1: f64, arg2: ::core::ffi::c_int) -> f64;
-    pub fn log(arg1: f64) -> f64;
     pub fn log10(arg1: f64) -> f64;
-    pub fn pow(arg1: f64, arg2: f64) -> f64;
-    pub fn sqrt(arg1: f64) -> f64;
-    pub fn fmod(arg1: f64, arg2: f64) -> f64;
-    pub fn infinity() -> f64;
-    pub fn nan(arg1: *const ::core::ffi::c_char) -> f64;
-    pub fn copysign(arg1: f64, arg2: f64) -> f64;
-    pub fn logb(arg1: f64) -> f64;
-    pub fn ilogb(arg1: f64) -> ::core::ffi::c_int;
-    pub fn asinh(arg1: f64) -> f64;
-    pub fn cbrt(arg1: f64) -> f64;
-    pub fn nextafter(arg1: f64, arg2: f64) -> f64;
-    pub fn rint(arg1: f64) -> f64;
-    pub fn scalbn(arg1: f64, arg2: ::core::ffi::c_int) -> f64;
     pub fn exp2(arg1: f64) -> f64;
-    pub fn scalbln(arg1: f64, arg2: ::core::ffi::c_long) -> f64;
-    pub fn tgamma(arg1: f64) -> f64;
-    pub fn nearbyint(arg1: f64) -> f64;
-    pub fn lrint(arg1: f64) -> ::core::ffi::c_long;
-    pub fn llrint(arg1: f64) -> ::core::ffi::c_longlong;
-    pub fn round(arg1: f64) -> f64;
-    pub fn lround(arg1: f64) -> ::core::ffi::c_long;
-    pub fn llround(arg1: f64) -> ::core::ffi::c_longlong;
-    pub fn trunc(arg1: f64) -> f64;
-    pub fn remquo(arg1: f64, arg2: f64, arg3: *mut ::core::ffi::c_int) -> f64;
-    pub fn fdim(arg1: f64, arg2: f64) -> f64;
-    pub fn fmax(arg1: f64, arg2: f64) -> f64;
-    pub fn fmin(arg1: f64, arg2: f64) -> f64;
-    pub fn fma(arg1: f64, arg2: f64, arg3: f64) -> f64;
     pub fn log1p(arg1: f64) -> f64;
     pub fn expm1(arg1: f64) -> f64;
-    pub fn acosh(arg1: f64) -> f64;
-    pub fn atanh(arg1: f64) -> f64;
-    pub fn remainder(arg1: f64, arg2: f64) -> f64;
-    pub fn gamma(arg1: f64) -> f64;
-    pub fn lgamma(arg1: f64) -> f64;
-    pub fn erf(arg1: f64) -> f64;
-    pub fn erfc(arg1: f64) -> f64;
     pub fn log2(arg1: f64) -> f64;
-    pub fn hypot(arg1: f64, arg2: f64) -> f64;
-    pub fn atanf(arg1: f32) -> f32;
-    pub fn cosf(arg1: f32) -> f32;
-    pub fn sinf(arg1: f32) -> f32;
-    pub fn tanf(arg1: f32) -> f32;
-    pub fn tanhf(arg1: f32) -> f32;
-    pub fn frexpf(arg1: f32, arg2: *mut ::core::ffi::c_int) -> f32;
-    pub fn modff(arg1: f32, arg2: *mut f32) -> f32;
-    pub fn ceilf(arg1: f32) -> f32;
-    pub fn fabsf(arg1: f32) -> f32;
-    pub fn floorf(arg1: f32) -> f32;
-    pub fn acosf(arg1: f32) -> f32;
-    pub fn asinf(arg1: f32) -> f32;
     pub fn atan2f(arg1: f32, arg2: f32) -> f32;
-    pub fn coshf(arg1: f32) -> f32;
-    pub fn sinhf(arg1: f32) -> f32;
-    pub fn expf(arg1: f32) -> f32;
-    pub fn ldexpf(arg1: f32, arg2: ::core::ffi::c_int) -> f32;
-    pub fn logf(arg1: f32) -> f32;
     pub fn log10f(arg1: f32) -> f32;
-    pub fn powf(arg1: f32, arg2: f32) -> f32;
-    pub fn sqrtf(arg1: f32) -> f32;
-    pub fn fmodf(arg1: f32, arg2: f32) -> f32;
     pub fn exp2f(arg1: f32) -> f32;
-    pub fn scalblnf(arg1: f32, arg2: ::core::ffi::c_long) -> f32;
-    pub fn tgammaf(arg1: f32) -> f32;
-    pub fn nearbyintf(arg1: f32) -> f32;
-    pub fn lrintf(arg1: f32) -> ::core::ffi::c_long;
-    pub fn llrintf(arg1: f32) -> ::core::ffi::c_longlong;
-    pub fn roundf(arg1: f32) -> f32;
-    pub fn lroundf(arg1: f32) -> ::core::ffi::c_long;
-    pub fn llroundf(arg1: f32) -> ::core::ffi::c_longlong;
-    pub fn truncf(arg1: f32) -> f32;
-    pub fn remquof(arg1: f32, arg2: f32, arg3: *mut ::core::ffi::c_int) -> f32;
-    pub fn fdimf(arg1: f32, arg2: f32) -> f32;
-    pub fn fmaxf(arg1: f32, arg2: f32) -> f32;
-    pub fn fminf(arg1: f32, arg2: f32) -> f32;
-    pub fn fmaf(arg1: f32, arg2: f32, arg3: f32) -> f32;
-    pub fn infinityf() -> f32;
-    pub fn nanf(arg1: *const ::core::ffi::c_char) -> f32;
-    pub fn copysignf(arg1: f32, arg2: f32) -> f32;
-    pub fn logbf(arg1: f32) -> f32;
-    pub fn ilogbf(arg1: f32) -> ::core::ffi::c_int;
-    pub fn asinhf(arg1: f32) -> f32;
-    pub fn cbrtf(arg1: f32) -> f32;
-    pub fn nextafterf(arg1: f32, arg2: f32) -> f32;
-    pub fn rintf(arg1: f32) -> f32;
-    pub fn scalbnf(arg1: f32, arg2: ::core::ffi::c_int) -> f32;
     pub fn log1pf(arg1: f32) -> f32;
     pub fn expm1f(arg1: f32) -> f32;
-    pub fn acoshf(arg1: f32) -> f32;
-    pub fn atanhf(arg1: f32) -> f32;
-    pub fn remainderf(arg1: f32, arg2: f32) -> f32;
-    pub fn gammaf(arg1: f32) -> f32;
-    pub fn lgammaf(arg1: f32) -> f32;
-    pub fn erff(arg1: f32) -> f32;
-    pub fn erfcf(arg1: f32) -> f32;
     pub fn log2f(arg1: f32) -> f32;
-    pub fn hypotf(arg1: f32, arg2: f32) -> f32;
-    pub fn tmpfile() -> *mut FILE;
-    pub fn tmpnam(arg1: *mut ::core::ffi::c_char) -> *mut ::core::ffi::c_char;
-    pub fn fclose(arg1: *mut FILE) -> ::core::ffi::c_int;
-    pub fn fflush(arg1: *mut FILE) -> ::core::ffi::c_int;
-    pub fn freopen(
-        arg1: *const ::core::ffi::c_char,
-        arg2: *const ::core::ffi::c_char,
-        arg3: *mut FILE,
-    ) -> *mut FILE;
-    pub fn setbuf(arg1: *mut FILE, arg2: *mut ::core::ffi::c_char);
-    pub fn setvbuf(
-        arg1: *mut FILE,
-        arg2: *mut ::core::ffi::c_char,
-        arg3: ::core::ffi::c_int,
-        arg4: usize,
-    ) -> ::core::ffi::c_int;
-    pub fn fprintf(arg1: *mut FILE, arg2: *const ::core::ffi::c_char, ...) -> ::core::ffi::c_int;
-    pub fn fscanf(arg1: *mut FILE, arg2: *const ::core::ffi::c_char, ...) -> ::core::ffi::c_int;
-    pub fn printf(arg1: *const ::core::ffi::c_char, ...) -> ::core::ffi::c_int;
-    pub fn scanf(arg1: *const ::core::ffi::c_char, ...) -> ::core::ffi::c_int;
-    pub fn sscanf(
-        arg1: *const ::core::ffi::c_char,
-        arg2: *const ::core::ffi::c_char,
-        ...
-    ) -> ::core::ffi::c_int;
-    pub fn vfprintf(
-        arg1: *mut FILE,
-        arg2: *const ::core::ffi::c_char,
-        arg3: __gnuc_va_list,
-    ) -> ::core::ffi::c_int;
-    pub fn vprintf(arg1: *const ::core::ffi::c_char, arg2: __gnuc_va_list) -> ::core::ffi::c_int;
-    pub fn vsprintf(
-        arg1: *mut ::core::ffi::c_char,
-        arg2: *const ::core::ffi::c_char,
-        arg3: __gnuc_va_list,
-    ) -> ::core::ffi::c_int;
-    pub fn fgetc(arg1: *mut FILE) -> ::core::ffi::c_int;
-    pub fn fgets(
-        arg1: *mut ::core::ffi::c_char,
-        arg2: ::core::ffi::c_int,
-        arg3: *mut FILE,
-    ) -> *mut ::core::ffi::c_char;
-    pub fn fputc(arg1: ::core::ffi::c_int, arg2: *mut FILE) -> ::core::ffi::c_int;
-    pub fn fputs(arg1: *const ::core::ffi::c_char, arg2: *mut FILE) -> ::core::ffi::c_int;
-    pub fn getc(arg1: *mut FILE) -> ::core::ffi::c_int;
-    pub fn getchar() -> ::core::ffi::c_int;
-    pub fn gets(arg1: *mut ::core::ffi::c_char) -> *mut ::core::ffi::c_char;
-    pub fn putc(arg1: ::core::ffi::c_int, arg2: *mut FILE) -> ::core::ffi::c_int;
-    pub fn putchar(arg1: ::core::ffi::c_int) -> ::core::ffi::c_int;
-    pub fn puts(arg1: *const ::core::ffi::c_char) -> ::core::ffi::c_int;
-    pub fn ungetc(arg1: ::core::ffi::c_int, arg2: *mut FILE) -> ::core::ffi::c_int;
-    pub fn fread(arg1: *mut ::core::ffi::c_void, _size: usize, _n: usize, arg2: *mut FILE)
-    -> usize;
-    pub fn fwrite(
-        arg1: *const ::core::ffi::c_void,
-        _size: usize,
-        _n: usize,
-        arg2: *mut FILE,
-    ) -> usize;
-    pub fn fgetpos(arg1: *mut FILE, arg2: *mut fpos_t) -> ::core::ffi::c_int;
-    pub fn fseek(
-        arg1: *mut FILE,
-        arg2: ::core::ffi::c_long,
-        arg3: ::core::ffi::c_int,
-    ) -> ::core::ffi::c_int;
-    pub fn fsetpos(arg1: *mut FILE, arg2: *const fpos_t) -> ::core::ffi::c_int;
-    pub fn ftell(arg1: *mut FILE) -> ::core::ffi::c_long;
-    pub fn rewind(arg1: *mut FILE);
-    pub fn clearerr(arg1: *mut FILE);
-    pub fn feof(arg1: *mut FILE) -> ::core::ffi::c_int;
-    pub fn ferror(arg1: *mut FILE) -> ::core::ffi::c_int;
-    pub fn perror(arg1: *const ::core::ffi::c_char);
-    pub fn fopen(_name: *const ::core::ffi::c_char, _type: *const ::core::ffi::c_char)
-    -> *mut FILE;
-    pub fn sprintf(
-        arg1: *mut ::core::ffi::c_char,
-        arg2: *const ::core::ffi::c_char,
-        ...
-    ) -> ::core::ffi::c_int;
-    pub fn remove(arg1: *const ::core::ffi::c_char) -> ::core::ffi::c_int;
-    pub fn rename(
-        arg1: *const ::core::ffi::c_char,
-        arg2: *const ::core::ffi::c_char,
-    ) -> ::core::ffi::c_int;
-    pub fn vfscanf(
-        arg1: *mut FILE,
-        arg2: *const ::core::ffi::c_char,
-        arg3: __gnuc_va_list,
-    ) -> ::core::ffi::c_int;
-    pub fn vscanf(arg1: *const ::core::ffi::c_char, arg2: __gnuc_va_list) -> ::core::ffi::c_int;
-    pub fn vsscanf(
-        arg1: *const ::core::ffi::c_char,
-        arg2: *const ::core::ffi::c_char,
-        arg3: __gnuc_va_list,
-    ) -> ::core::ffi::c_int;
-    pub fn fpurge(arg1: *mut FILE) -> ::core::ffi::c_int;
     #[link_name = "\u{1}_Z21UARTInterceptSetStatei"]
     pub fn UARTInterceptSetState(state: ::core::ffi::c_int);
     #[link_name = "\u{1}_Z13UARTGetStatusv"]
