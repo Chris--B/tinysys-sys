@@ -43,6 +43,7 @@ echo $(git log --oneline HEAD | head -n 1) >> $OUTDIR/git-HEAD.txt
 popd > /dev/null
 
 SDK_PATH=$REPO/software/
+mv -v $OUTDIR/SDK $OUTDIR/SDK.old
 do_loudly cp -r $SDK_PATH/SDK $OUTDIR/
 
 echo "[~] SDK H files"
