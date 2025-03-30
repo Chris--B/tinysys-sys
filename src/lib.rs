@@ -12,6 +12,27 @@ pub use sdk::*;
 #[cfg(feature = "alloc")]
 mod printing;
 
+/// Hardware format is: 12bit R:G:B
+#[allow(non_snake_case)]
+pub const fn MAKECOLORRGB12(r: u8, g: u8, b: u8) -> u32 {
+    ((((r as u32) & 0xF) << 8) | ((g as u32) & 0xF) << 4) | ((b as u32) & 0xF)
+}
+
+#[allow(non_snake_case)]
+pub const fn MCONTROL_TYPE(xlen: u64) -> u64 {
+    0xf_u64 << ((xlen) - 4)
+}
+
+#[allow(non_snake_case)]
+pub const fn MCONTROL_DMODE(xlen: u32) -> u64 {
+    1_u64 << ((xlen) - 5)
+}
+
+#[allow(non_snake_case)]
+pub const fn MCONTROL_MASKMAX(xlen: u32) -> u64 {
+    0x3f_u64 << ((xlen) - 11)
+}
+
 /// This crate is largely generated and from a specific git rev of the tinysys SDK headers.
 /// This is the git rev that was used. See the full tinysys repo for more information on this specific hash.
 pub const TINYSYS_SDK_GIT_REV: &str = include_str!("../c_sdk/git-HEAD.txt");

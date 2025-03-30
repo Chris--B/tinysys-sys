@@ -170,7 +170,10 @@ fn generate_sdk_rs(rs_out: impl AsRef<Path>) {
         // It doesn't by default and likes to crash in **host** C headers with nonsense like:
         //      thread 'main' panicked at build.rs:40:10:
         //      Unable to generate bindings: ClangDiagnostic("/Library/Developer/CommandLineTools/usr/lib/clang/16/include/inttypes.h:21:15: fatal error: 'inttypes.h' file not found\n")
-        .expect("Unable to generate bindings");
+        .unwrap_or_else(|e| {
+            println!("cargo:warning=Unable to generate sdk.rs: {e:#?}");
+            panic!("Unable to generate bindings: {e:#?}");
+        });
 
     let mut code = vec![];
     bindings
