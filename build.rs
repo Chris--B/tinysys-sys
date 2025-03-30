@@ -124,8 +124,6 @@ fn generate_sdk_rs(rs_out: impl AsRef<Path>) {
     //      export BINDGEN_EXTRA_CLANG_ARGS="--sysroot=$(riscv64-unknown-elf-gcc -print-sysroot)"
     println!("cargo:rerun-if-env-changed={}", "BINDGEN_EXTRA_CLANG_ARGS");
 
-    let blocklist_c_funcs_regex = format!("({})", BLOCKLIST_C_FUNCS.join("|"));
-
     let bindings = bindgen::Builder::default()
         .header("src/include/wrapper.h")
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
@@ -150,12 +148,12 @@ fn generate_sdk_rs(rs_out: impl AsRef<Path>) {
         .allowlist_function(".*")
         // Capture C Macros
         // Note: Most (All?) macro functions have to be ported manually
-        .allowlist_item("[A-Z]+[A-Z_]+")
+        .allowlist_item("[A-Z]+[A-Z_0-9]+")
         // _ names are usually special and not part of the SDK we want
         .opaque_type("_.*")
         .blocklist_function("_.*")
-        .blocklist_function("[a-z]+")
-        .blocklist_function(blocklist_c_funcs_regex)
+        // block all libc functions
+        .blocklist_function("[a-z0-9]+")
         // ## How we generate bindings for the above things
         .derive_copy(true)
         .derive_debug(true)
@@ -187,69 +185,3 @@ fn generate_sdk_rs(rs_out: impl AsRef<Path>) {
     let code: String = code.join("\n");
     write_if_different(rs_out.as_ref(), code).unwrap();
 }
-
-const BLOCKLIST_C_FUNCS: &[&str] = &[
-    // Block all math functions that use 128 bit ints. u128 isn't well behaved over FFI,
-    // and we don't want to export a bunch of libc functions anyway.
-    "acoshl",
-    "acosl",
-    "asinhl",
-    "asinl",
-    "atan2l",
-    "atanhl",
-    "atanl",
-    "cbrtl",
-    "ceill",
-    "copysignl",
-    "coshl",
-    "cosl",
-    "erfcl",
-    "erfl",
-    "exp2l",
-    "expl",
-    "expm1l",
-    "fabsl",
-    "fdiml",
-    "finitel",
-    "floorl",
-    "fmal",
-    "fmaxl",
-    "fminl",
-    "fmodl",
-    "frexpl",
-    "hypotl",
-    "ilogbl",
-    "ldexpl",
-    "lgammal",
-    "llrintl",
-    "llroundl",
-    "log10l",
-    "log1pl",
-    "log2l",
-    "logbl",
-    "logl",
-    "lrintl",
-    "lroundl",
-    "modfl",
-    "nanl",
-    "nearbyintl",
-    "nextafterl",
-    "nexttoward",
-    "nexttowardf",
-    "nexttowardl",
-    "powl",
-    "remainderl",
-    "remquol",
-    "rintl",
-    "roundl",
-    "scalblnl",
-    "scalbnl",
-    "sinhl",
-    "sinl",
-    "sqrtl",
-    "strtold",
-    "tanhl",
-    "tanl",
-    "tgammal",
-    "truncl",
-];
