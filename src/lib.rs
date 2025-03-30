@@ -1,4 +1,4 @@
-#![no_std]
+#![cfg_attr(not(test), no_std)]
 
 #[cfg(feature = "alloc")]
 extern crate alloc;
@@ -27,11 +27,12 @@ mod malloc_free {
 
     fn layout(size: usize) -> Layout {
         // Note: We'll always align to a pointer (4 bytes on rv32) to keep things simple
-        unsafe { Layout::from_size_align_unchecked(size, PTR_SIZE) }
+        Layout::from_size_align(size, PTR_SIZE).unwrap()
     }
 
+    // NOTE: We cannot name this `malloc` on platforms with `std`, or risk stack overflow: `alloc::alloc::alloc` defers to `malloc`.
     #[unsafe(no_mangle)]
-    pub unsafe extern "C" fn malloc(size: usize) -> *mut u8 {
+    pub unsafe extern "C" fn ts_malloc(size: usize) -> *mut u8 {
         // Safety: Do not call anything that can alloc in here. That includes `dbg!()`!
         unsafe {
             // Adjust our size request to handle our size header
@@ -47,7 +48,7 @@ mod malloc_free {
     }
 
     #[unsafe(no_mangle)]
-    pub unsafe extern "C" fn free(ptr: *mut u8) {
+    pub unsafe extern "C" fn ts_free(ptr: *mut u8) {
         // C/++ require `free()` handles NULL
         if ptr.is_null() {
             return;
@@ -60,6 +61,37 @@ mod malloc_free {
             let size = (ptr as *mut usize).read();
 
             alloc::alloc::dealloc(ptr, layout(size));
+        }
+    }
+
+    #[unsafe(no_mangle)]
+    #[cfg(target_os = "none")]
+    pub unsafe extern "C" fn malloc(size: usize) -> *mut u8 {
+        unsafe { ts_malloc(size) }
+    }
+
+    #[unsafe(no_mangle)]
+    #[cfg(target_os = "none")]
+    pub unsafe extern "C" fn free(ptr: *mut u8) {
+        unsafe { ts_free(ptr) }
+    }
+
+    #[cfg(test)]
+    mod t {
+        use super::*;
+
+        #[test]
+        fn check_malloc_and_free_doesnt_crash() {
+            unsafe {
+                let a = ts_malloc(4);
+                {
+                    let a = &mut *(a as *mut u32);
+                    *a = 10;
+                    *a += 10;
+                    assert_eq!(*a, 20);
+                }
+                ts_free(a);
+            }
         }
     }
 }

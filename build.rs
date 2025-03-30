@@ -10,7 +10,9 @@ fn main() {
     #[cfg(feature = "bindgen")]
     generate_sdk_rs("src/sdk.rs");
 
-    use_native_lib("tinysys_c_sdk", "tinysys_sdk");
+    if env::var("CARGO_CFG_TARGET_ARCH").unwrap() == "riscv32" {
+        use_native_lib("tinysys_c_sdk", "tinysys_sdk");
+    }
 }
 
 fn cargo_rerun_if(path: impl AsRef<Path>) {
