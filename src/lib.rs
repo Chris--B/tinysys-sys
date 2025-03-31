@@ -1,7 +1,11 @@
 #![cfg_attr(not(test), no_std)]
+// When bridging items like macros, we prefer to match the casing exactly.
+#![allow(non_snake_case)]
 
 #[cfg(feature = "alloc")]
 extern crate alloc;
+
+use core::arch::asm;
 
 // These bindings are tied to the target they were generated for, and break on other platforms
 #[cfg(target_arch = "riscv32")]
@@ -13,24 +17,50 @@ pub use sdk::*;
 mod printing;
 
 /// Hardware format is: 12bit R:G:B
-#[allow(non_snake_case)]
 pub const fn MAKECOLORRGB12(r: u8, g: u8, b: u8) -> u32 {
     ((((r as u32) & 0xF) << 8) | ((g as u32) & 0xF) << 4) | ((b as u32) & 0xF)
 }
 
-#[allow(non_snake_case)]
 pub const fn MCONTROL_TYPE(xlen: u64) -> u64 {
     0xf_u64 << ((xlen) - 4)
 }
 
-#[allow(non_snake_case)]
 pub const fn MCONTROL_DMODE(xlen: u32) -> u64 {
     1_u64 << ((xlen) - 5)
 }
 
-#[allow(non_snake_case)]
 pub const fn MCONTROL_MASKMAX(xlen: u32) -> u64 {
     0x3f_u64 << ((xlen) - 11)
+}
+
+/// Flush data cache to memory
+pub fn CFLUSH_D_L1() {
+    // See: https://doc.rust-lang.org/reference/inline-assembly.html#options
+    unsafe {
+        asm!(
+            ".insn 0xFC000073",
+            options(nostack, preserves_flags, readonly)
+        );
+    }
+}
+
+/// Discard data cache contents
+pub fn CDISCARD_D_L1() {
+    // See: https://doc.rust-lang.org/reference/inline-assembly.html#options
+    unsafe {
+        asm!(
+            ".insn 0xFC200073",
+            options(nostack, preserves_flags, readonly)
+        );
+    }
+}
+
+/// Invalidate instruction cache
+pub fn FENCE_I() {
+    // See: https://doc.rust-lang.org/reference/inline-assembly.html#options
+    unsafe {
+        asm!("fence.i", options(nostack, preserves_flags, readonly));
+    }
 }
 
 /// This crate is largely generated and from a specific git rev of the tinysys SDK headers.
