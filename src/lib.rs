@@ -5,8 +5,6 @@
 #[cfg(feature = "alloc")]
 extern crate alloc;
 
-use core::arch::asm;
-
 // These bindings are tied to the target they were generated for, and break on other platforms
 #[cfg(target_arch = "riscv32")]
 mod sdk;
@@ -15,6 +13,12 @@ pub use sdk::*;
 
 #[cfg(feature = "alloc")]
 mod printing;
+// only exports macros
+
+#[cfg(target_arch = "riscv32")]
+mod instructions;
+#[cfg(target_arch = "riscv32")]
+pub use instructions::*;
 
 /// Hardware format is: 12bit R:G:B
 pub const fn MAKECOLORRGB12(r: u8, g: u8, b: u8) -> u32 {
@@ -33,35 +37,6 @@ pub const fn MCONTROL_MASKMAX(xlen: u32) -> u64 {
     0x3f_u64 << ((xlen) - 11)
 }
 
-/// Flush data cache to memory
-pub fn CFLUSH_D_L1() {
-    // See: https://doc.rust-lang.org/reference/inline-assembly.html#options
-    unsafe {
-        asm!(
-            ".insn 0xFC000073",
-            options(nostack, preserves_flags, readonly)
-        );
-    }
-}
-
-/// Discard data cache contents
-pub fn CDISCARD_D_L1() {
-    // See: https://doc.rust-lang.org/reference/inline-assembly.html#options
-    unsafe {
-        asm!(
-            ".insn 0xFC200073",
-            options(nostack, preserves_flags, readonly)
-        );
-    }
-}
-
-/// Invalidate instruction cache
-pub fn FENCE_I() {
-    // See: https://doc.rust-lang.org/reference/inline-assembly.html#options
-    unsafe {
-        asm!("fence.i", options(nostack, preserves_flags, readonly));
-    }
-}
 
 /// This crate is largely generated and from a specific git rev of the tinysys SDK headers.
 /// This is the git rev that was used. See the full tinysys repo for more information on this specific hash.
