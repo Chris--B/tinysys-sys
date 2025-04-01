@@ -22,7 +22,7 @@ pub use instructions::*;
 
 /// Hardware format is: 12bit R:G:B
 pub const fn MAKECOLORRGB12(r: u8, g: u8, b: u8) -> u32 {
-    ((((r as u32) & 0xF) << 8) | ((g as u32) & 0xF) << 4) | ((b as u32) & 0xF)
+    (((r as u32) & 0xF) << 8) | (((g as u32) & 0xF) << 4) | ((b as u32) & 0xF)
 }
 
 pub const fn MCONTROL_TYPE(xlen: u64) -> u64 {
